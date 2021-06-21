@@ -10,13 +10,13 @@ public class Main {
         Manager manager = new Manager();
         Shop shop = new Shop();
         Scanner scanner;
-        String input;
+        String input, enemyState;
         Player player;
         Enemy enemy;
         Kayn kayn;
         int random, i, previous = 0;
 
-        System.out.println(new Text("<red>ODYSSEY BATTLE <white>| <cyan>WozardLozard\n\n<white>The year is 2080 in the galaxy known simply as \"Odyssey\". You find yourself on a strange alien planet, your ship having crashed down a few hours earlier and stuck on the other side of the planet. In the distance, you hear foreign and frightening sounds of unknown creatures. You know that you must somehow get to your ship to repair it and go home... But how?\n\n<yellow>You realize that you are wearing a backpack. <white>Press any key to open it."));
+        System.out.println(new Text("<red>ODYSSEY BATTLE <white>| <cyan>WozardLozard\n\n<white>Our story begins in the year 2080, in the galaxy known simply as \"Odyssey\". You find yourself on a strange alien planet, your ship having crashed down a few hours earlier and stuck on the other side of the planet. In the distance, you hear foreign and frightening sounds of unknown alien creatures. You know that you must somehow get to your ship to repair it and go home... But how?\n\n<yellow>You realize that you are wearing a backpack. <white>Press any key to open it."));
 
         scanner = new Scanner(System.in);
         scanner.nextLine();
@@ -39,7 +39,7 @@ public class Main {
                 System.out.println(new Text("You open the golden capsule. A strong wind erupts from it, knocking you back. When you get up again, you see a stranger with a sword and mustache.\n\n<yellow>\"Who are you?\" You ask.\n\"Why, how dare you not know my name? I am Yasuo, the greatest master of sword and wind there ever will be.\" Says the stranger.\n\n<!> You have chosen Yasuo as your Champion!"));
                 break;
             case "2":
-                player = new Player(1950, 325, 0, 40, 25, 20, 100, 50, 100, 2, "Jinx");
+                player = new Player(1950, 325, 0, 40, 15, 20, 125, 60, 100, 2, "Jinx");
                 System.out.println(new Text("You open the green capsule. A cloud of noxious-smelling green gas wafts out, causing you to turn away and shut your eyes. When you look back at where the capsule had been, you see a stranger with a... rocket launcher?!\n\n<green>\"Who are you?\" You ask.\n\"Why, how dare you not know of my record of blowing stuff up? I am Jinx.\" Says the stranger.\n\n<!> You have chosen Jinx as your Champion!"));
                 break;
             case "3":
@@ -58,7 +58,7 @@ public class Main {
         scanner = new Scanner(System.in);
         scanner.nextLine();
 
-        while (manager.getWave() < 9) {
+        while (manager.getWave() < 14) {
             random = pickEnemy(manager);
 
             while (random == 3 && player.getBuffs()[0] != null && player.getBuffs()[0].getType() == 1 || random == 3 && player.getBuffs()[1] != null && player.getBuffs()[1].getType() == 1 || random == 4 && player.getBuffs()[0] != null && player.getBuffs()[0].getType() == 2 || random == 4 && player.getBuffs()[1] != null && player.getBuffs()[1].getType() == 2 || random == previous) {
@@ -67,55 +67,85 @@ public class Main {
 
             switch (random) {
                 case 1:
-                    enemy = new Enemy(new int[]{randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(300 + manager.getWave() * 8, 320 + manager.getWave() * 8)}, 0, 0, 0, 5, 25, 0, 1, 6, 1, "Raptors", 28);
+                    if (manager.getWave() < 4) {
+                        enemy = new Enemy(new int[]{randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(250 + manager.getWave() * 8, 300 + manager.getWave() * 8), randomNumber(300 + manager.getWave() * 8, 320 + manager.getWave() * 8)}, 0, 0, 0, 5, 25, 0, 1, 6, 1, "Raptors", 40);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(300 + manager.getWave() * 8, 350 + manager.getWave() * 8), randomNumber(300 + manager.getWave() * 8, 350 + manager.getWave() * 8), randomNumber(300 + manager.getWave() * 8, 350 + manager.getWave() * 8), randomNumber(300 + manager.getWave() * 8, 350 + manager.getWave() * 8), randomNumber(300 + manager.getWave() * 8, 350 + manager.getWave() * 8), randomNumber(350 + manager.getWave() * 8, 400 + manager.getWave() * 8)}, 0, 5, 5, 8, 30, 0, 1, 6, 1, "Raptors", 45);
+                    }
                     break;
                 case 2:
-                    enemy = new Enemy(new int[]{randomNumber(450 + manager.getWave() * 8, 520 + manager.getWave() * 8), randomNumber(450 + manager.getWave() * 8, 520 + manager.getWave() * 8), randomNumber(520 + manager.getWave() * 8, 580 + manager.getWave() * 8)}, 0, 10, 10, 0, 0, 30, 2, 3, 2, "Murkwolves", 56);
+                    if (manager.getWave() < 4) {
+                        enemy = new Enemy(new int[]{randomNumber(450 + manager.getWave() * 8, 520 + manager.getWave() * 8), randomNumber(450 + manager.getWave() * 8, 520 + manager.getWave() * 8), randomNumber(520 + manager.getWave() * 8, 580 + manager.getWave() * 8)}, 0, 10, 10, 0, 0, 30, 2, 3, 2, "Murkwolves", 80);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(500 + manager.getWave() * 8, 550 + manager.getWave() * 8), randomNumber(500 + manager.getWave() * 8, 550 + manager.getWave() * 8), randomNumber(550 + manager.getWave() * 8, 600 + manager.getWave() * 8)}, 0, 15, 15, 5, 0, 35, 2, 3, 2, "Murkwolves", 80);
+                    }
                     break;
                 case 3:
-                    enemy = new Enemy(new int[]{randomNumber(1200 + manager.getWave() * 8, 1500 + manager.getWave() * 8)}, 0, 30, 20, 10, 85, 0, 1, 1, 3, "Red Brambleback", 160);
+                    if (manager.getWave() < 6) {
+                        enemy = new Enemy(new int[]{randomNumber(1200 + manager.getWave() * 8, 1500 + manager.getWave() * 8)}, 0, 30, 20, 10, 85, 0, 1, 1, 3, "Red Brambleback", 240);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(1400 + manager.getWave() * 8, 1700 + manager.getWave() * 8)}, 0, 35, 25, 15, 90, 0, 1, 1, 3, "Red Brambleback", 240);
+                    }
                     break;
                 case 4:
-                    enemy = new Enemy(new int[]{randomNumber(1200 + manager.getWave() * 8, 1500 + manager.getWave() * 8)}, 0, 20, 30, 10, 0, 85, 2, 1, 4, "Blue Sentinel", 160);
+                    if (manager.getWave() < 6) {
+                        enemy = new Enemy(new int[]{randomNumber(1200 + manager.getWave() * 8, 1500 + manager.getWave() * 8)}, 0, 20, 30, 10, 0, 85, 2, 1, 4, "Blue Sentinel", 240);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(1400 + manager.getWave() * 8, 1700 + manager.getWave() * 8)}, 0, 25, 35, 15, 0, 90, 2, 1, 4, "Blue Sentinel", 240);
+                    }
                     break;
                 case 5:
-                    enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 10, 20, 15, 100, 0, 1, 1, 5, "Infernal Drake", 167);
+                    if (manager.getWave() < 9) {
+                        enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 10, 20, 15, 0, 100, 2, 1, 5, "Infernal Drake", 250);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(1750 + manager.getWave() * 8, 2050 + manager.getWave() * 8)}, 0, 20, 30, 20, 0, 105, 2, 1, 5, "Infernal Drake", 250);
+                    }
                     break;
                 case 6:
-                    enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 50, 50, 10, 60, 0, 1, 1, 6, "Mountain Drake", 167);
+                    if (manager.getWave() < 9) {
+                        enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 50, 50, 10, 60, 0, 1, 1, 6, "Mountain Drake", 250);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(1750 + manager.getWave() * 8, 2050 + manager.getWave() * 8)}, 0, 60, 60, 15, 65, 0, 1, 1, 6, "Mountain Drake", 250);
+                    }
                     break;
                 case 7:
-                    enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 25, 25, 10, 80, 0, 1, 1, 7, "Ocean Drake", 167);
+                    if (manager.getWave() < 9) {
+                        enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 25, 25, 10, 80, 0, 1, 1, 7, "Ocean Drake", 250);
+                    } else {
+                        enemy = new Enemy(new int[]{randomNumber(1750 + manager.getWave() * 8, 2050 + manager.getWave() * 8)}, 0, 30, 30, 15, 90, 0, 1, 1, 7, "Ocean Drake", 250);
+                    }
                     break;
                 default:
-                    enemy = new Enemy(new int[]{randomNumber(450 + manager.getWave() * 8, 520 + manager.getWave() * 8), randomNumber(450 + manager.getWave() * 8, 520 + manager.getWave() * 8), randomNumber(520 + manager.getWave() * 8, 580 + manager.getWave() * 8)}, 0, 10, 10, 0, 0, 30, 2, 3, 2, "Murkwolves", 56);
+                    enemy = new Enemy(new int[]{randomNumber(1500 + manager.getWave() * 8, 1800 + manager.getWave() * 8)}, 0, 50, 50, 10, 60, 0, 1, 1, 6, "Mountain Drake", 250);
                     break;
             }
 
             previous = random;
-
-            System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered <red>" + enemy.getName() + "<white>!"));
-
-            for (i = 0; i < player.getBuffs().length; i++) {
-                if (player.getBuffs()[i] != null) {
-                    player.getBuffs()[i].decrementWaves();
-
-                    if (player.getBuffs()[i].getWavesLeft() < 0) {
-                        if (player.getBuffs()[i].getType() == 1) {
-                            System.out.println(new Text("Your <red>Crest of Cinders<white> has expired!"));
-                        } else if (player.getBuffs()[i].getType() == 2) {
-                            System.out.println(new Text("Your <blue>Crest of Insight<white> has expired!"));
-                        }
-                        
-                        player.getBuffs()[i] = null;
-                    }
-                }
-            }
             
             random = randomNumber(1, 2);
 
+            enemyState = "";
+            
+            if (enemy.getType() == 1) {
+                enemyState = "Damage: <red>Physical (" + enemy.getAttackDamage() + " AD)<white>\n";
+            } else if (enemy.getType() == 2){
+                enemyState = "Damage: <blue>Magical (" + enemy.getAbilityPower() + " AP)<white>\n";
+            }
+            
+            enemyState += "Resistances: <yellow>" + enemy.getArmor() + " Armor<white>, <cyan>" + enemy.getMagicResist() + " Magic resist<white>\n\n";
+            enemyState += "HP:\n";
+            
+            for (i = 0; i < enemy.getTotal(); i++) {
+                if (enemy.getHp()[i] > 0) {
+                    enemyState += (i + 1) + ". <green>" + enemy.getHp()[i] + " HP<white>";
+                    if (i < enemy.getTotal() - 1) enemyState += "\n";
+                }
+            }
+
             if (random == 1) {
-                System.out.println(new Text("\nIt is currently <red>the enemy's <white>turn."));
+                System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered <red>" + enemy.getName() + "<white>!\n\nENEMY QUICK STATS\n" + enemyState + "\n\n<white>It is currently <red>the enemy's <white>turn."));
+                
+                checkBuffs(player);
                 
                 try {
                     TimeUnit.SECONDS.sleep(2);
@@ -131,13 +161,17 @@ public class Main {
                     break;
                 }
 
-                prompt(enemy, shop, player, manager);
+                prompt(enemy, shop, player, manager, 2);
             } else if (random == 2) {
-                prompt(enemy, shop, player, manager);
+                System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered <red>" + enemy.getName() + "<white>!\n\nENEMY QUICK STATS\n" + enemyState + "\n\n<white>It is currently <green>your <white>turn."));
+                
+                checkBuffs(player);
+                
+                prompt(enemy, shop, player, manager, 1);
             }
         }
 
-        if (manager.getWave() == 9) {
+        if (manager.getWave() == 14) {
             System.out.println(new Text("You emerge from the chaos of the fighting with your Champion, worn but relieved. You can see your ship in the distance, and you can almost envision yourself taking off from this cursed planet already.\n\n<red>Suddenly, you see a flash ahead. An orb of light is steadily growing, emitting bolts of lighting in all directions. You are rooted to the spot in curiosity (and likely fear) as you watch a giant holographic scythe emerge from the light.<white>\n\"Not again...\" You think to yourself. You can almost feel your Champion thinking the same way.\n\n<!> Congrats, anonymous player, for reaching this point in the game. However, one more challenge stands in your path: the infamous Final Villain, known by many across the galaxy as Kayn. Anything and everything that Kayn slashes and reaps with his deadly blade stands no chance.\nAre you up to this tall task? Let's find out! Press any key to start the Final Battle."));
 
             scanner = new Scanner(System.in);
@@ -167,20 +201,35 @@ public class Main {
         }
     }
     
-    public static void prompt(Enemy enemy, Shop shop, Player player, Manager manager) {
+    public static void prompt(Enemy enemy, Shop shop, Player player, Manager manager, int detailed) {
         Scanner scanner;
         String input, shopState, enemyState, abilityState, buffState;
         String[] split, abilityIds = new String[]{"Q", "W", "E"};
         int i;
 
-        enemyState = "";
-        for (i = 0; i < enemy.getTotal(); i++) {
-            if (enemy.getHp()[i] > 0) {
-                enemyState += (i + 1) + ". <green>" + enemy.getHp()[i] + " HP<white>";
-                if (i < enemy.getTotal() - 1) enemyState += "\n";
-            }
+        switch (detailed) {
+            case 0:
+                enemyState = "";
+                for (i = 0; i < enemy.getTotal(); i++) {
+                    if (enemy.getHp()[i] > 0) {
+                        enemyState += (i + 1) + ". <green>" + enemy.getHp()[i] + " HP<white>";
+                        if (i < enemy.getTotal() - 1) enemyState += "\n";
+                    }
+                }
+
+                System.out.println(new Text("It is now <green>your<white> turn. Please enter your move below!\n\n<white>YOU: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana\n\n<red>ENEMIES (" + enemy.getName() + ")<white>:\n" + enemyState));
+
+                break;
+            case 1:
+                System.out.println(new Text("What do you do? Please enter your move below!"));
+                break;
+            case 2:
+                System.out.println(new Text("It is now <green>your<white> turn. Please enter your move below!"));
+                break;
+            case 3:
+                System.out.println(new Text("It is still <green>your<white> turn. Please enter your move below!"));
+                break;
         }
-        System.out.println(new Text("<yellow>What do you do? Please enter your move below!\n\nYOU: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana\n\n<red>ENEMIES (" + enemy.getName() + ")<white>:\n" + enemyState));
 
         scanner = new Scanner(System.in);
         input = scanner.nextLine();
@@ -252,8 +301,8 @@ public class Main {
 
         if (split[0].equalsIgnoreCase("attack")) {
             if (enemy.getHp()[Integer.parseInt(split[1]) - 1] <= 0) {
-                System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please try again."));
-                prompt(enemy, shop, player, manager);
+                System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please choose a different move."));
+                prompt(enemy, shop, player, manager, 4);
                 return;
             }
 
@@ -263,8 +312,8 @@ public class Main {
             if (split[1].equalsIgnoreCase("q")) {
                 if (!player.getAbilities()[0].isAoe()) {
                     if (enemy.getHp()[Integer.parseInt(split[2]) - 1] <= 0) {
-                        System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please try again."));
-                        prompt(enemy, shop, player, manager);
+                        System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please choose a different move."));
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
 
@@ -272,12 +321,12 @@ public class Main {
                         player.cast(enemy, "q", Integer.parseInt(split[2]) - 1);
                     } else {
                         if (player.getAbilities()[0].getCurrentCooldown() > 0) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please choose a different move."));
                         } else if (player.getMana() < player.getAbilities()[0].getMana()) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please choose a different move."));
                         }
 
-                        prompt(enemy, shop, player, manager);
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
                 } else {
@@ -285,12 +334,12 @@ public class Main {
                         player.cast(enemy, "q", 0);
                     } else {
                         if (player.getAbilities()[0].getCurrentCooldown() > 0) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please choose a different move."));
                         } else if (player.getMana() < player.getAbilities()[0].getMana()) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please choose a different move."));
                         }
 
-                        prompt(enemy, shop, player, manager);
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
 
@@ -300,8 +349,8 @@ public class Main {
             } else if (split[1].equalsIgnoreCase("w")) {
                 if (!player.getAbilities()[1].isAoe()) {
                     if (enemy.getHp()[Integer.parseInt(split[2]) - 1] <= 0) {
-                        System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please try again."));
-                        prompt(enemy, shop, player, manager);
+                        System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please choose a different move."));
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
 
@@ -309,12 +358,12 @@ public class Main {
                         player.cast(enemy, "w", Integer.parseInt(split[2]) - 1);
                     } else {
                         if (player.getAbilities()[1].getCurrentCooldown() > 0) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please choose a different move."));
                         } else if (player.getMana() < player.getAbilities()[1].getMana()) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please choose a different move."));
                         }
 
-                        prompt(enemy, shop, player, manager);
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
                 } else {
@@ -322,12 +371,12 @@ public class Main {
                         player.cast(enemy, "w", 0);
                     } else {
                         if (player.getAbilities()[1].getCurrentCooldown() > 0) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please choose a different move."));
                         } else if (player.getMana() < player.getAbilities()[1].getMana()) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please choose a different move."));
                         }
 
-                        prompt(enemy, shop, player, manager);
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
                 }
@@ -336,8 +385,8 @@ public class Main {
             } else if (split[1].equalsIgnoreCase("e")) {
                 if (!player.getAbilities()[2].isAoe()) {
                     if (enemy.getHp()[Integer.parseInt(split[2]) - 1] <= 0) {
-                        System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please try again."));
-                        prompt(enemy, shop, player, manager);
+                        System.out.println(new Text("<red>The enemy cannot be attacked! <white>Please choose a different move."));
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
 
@@ -345,12 +394,12 @@ public class Main {
                         player.cast(enemy, "e", Integer.parseInt(split[2]) - 1);
                     } else {
                         if (player.getAbilities()[2].getCurrentCooldown() > 0) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please choose a different move."));
                         } else if (player.getMana() < player.getAbilities()[2].getMana()) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please choose a different move."));
                         }
 
-                        prompt(enemy, shop, player, manager);
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
                 } else {
@@ -358,12 +407,12 @@ public class Main {
                         player.cast(enemy, "e", 0);
                     } else {
                         if (player.getAbilities()[2].getCurrentCooldown() > 0) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because it is on cooldown! <white>Please choose a different move."));
                         } else if (player.getMana() < player.getAbilities()[2].getMana()) {
-                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please try again."));
+                            System.out.println(new Text("<red>You cannot cast this ability right now because you do not have enough mana! <white>Please choose a different move."));
                         }
 
-                        prompt(enemy, shop, player, manager);
+                        prompt(enemy, shop, player, manager, 4);
                         return;
                     }
                 }
@@ -386,7 +435,7 @@ public class Main {
             }
 
             System.out.println(new Text("ITEM SHOP\n<yellow>Your gold: " + player.getGold() + "<white>\n\n" + shopState));
-            prompt(enemy, shop, player, manager);
+            prompt(enemy, shop, player, manager, 3);
             return;
         } else if (split[0].equalsIgnoreCase("inventory")) {
             shopState = "";
@@ -401,33 +450,33 @@ public class Main {
             if (shopState.equals("")) shopState = "No items";
 
             System.out.println(new Text("YOUR INVENTORY\n<yellow>" + player.getGold() + " Gold<white>\n" + shopState));
-            prompt(enemy, shop, player, manager);
+            prompt(enemy, shop, player, manager, 3);
             return;
         } else if (split[0].equalsIgnoreCase("buy")) {
             if (player.getGold() < shop.getItems()[Integer.parseInt(split[1]) - 1].getCost()) {
-                System.out.println(new Text("<red>You cannot buy this item because you do not have enough <yellow>Gold<red>!<white> Please try again."));
-                prompt(enemy, shop, player, manager);
+                System.out.println(new Text("<red>You cannot buy this item because you do not have enough <yellow>Gold<red>!<white> Please choose a different move."));
+                prompt(enemy, shop, player, manager, 4);
                 return;
             } else if (shop.getItems()[Integer.parseInt(split[1]) - 1].isPurchased()) {
-                System.out.println(new Text("<red>You cannot buy this item because you already own it!<white> Please try again."));
-                prompt(enemy, shop, player, manager);
+                System.out.println(new Text("<red>You cannot buy this item because you already own it!<white> Please choose a different move."));
+                prompt(enemy, shop, player, manager, 4);
                 return;
             }
 
             shop.buy(player, Integer.parseInt(split[1]));
-            prompt(enemy, shop, player, manager);
+            prompt(enemy, shop, player, manager, 3);
             return;
         } else if (split[0].equalsIgnoreCase("sell")) {
             for (i = 0; i < player.getInventory().length; i++) {
                 if (player.getInventory()[i] != null && player.getInventory()[i].getId() == Integer.parseInt(split[1])) {
                     shop.sell(player, Integer.parseInt(split[1]));
-                    prompt(enemy, shop, player, manager);
+                    prompt(enemy, shop, player, manager, 3);
                     return;
                 }
             }
 
-            System.out.println(new Text("<red>You cannot sell this item because you do not own it!<white> Please try again."));
-            prompt(enemy, shop, player, manager);
+            System.out.println(new Text("<red>You cannot sell this item because you do not own it!<white> Please choose a different move."));
+            prompt(enemy, shop, player, manager, 4);
             return;
         } else if (split[0].equalsIgnoreCase("stats")) {
             if (split.length == 1 || !split[1].equalsIgnoreCase("enemy")) {
@@ -436,15 +485,31 @@ public class Main {
                 for (i = 0; i < player.getAbilities().length; i++) {
                     if (player.getAbilities()[i].getType() == 1) {
                         if (!player.getAbilities()[i].isAoe()) {
-                            abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <red>" + player.getAbilities()[i].getDamage(player.getAttackDamage()) + " physical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Single target | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            if (!player.getAbilities()[i].isImmobilizing()) {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <red>" + player.getAbilities()[i].getDamage(player.getAttackDamage()) + " physical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Single target | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            } else {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <red>" + player.getAbilities()[i].getDamage(player.getAttackDamage()) + " physical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Single target | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| <purple>Immobilizing<white> | " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            }
                         } else {
-                            abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <red>" + player.getAbilities()[i].getDamage(player.getAttackDamage()) + " physical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Area of effect | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            if (!player.getAbilities()[i].isImmobilizing()) {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <red>" + player.getAbilities()[i].getDamage(player.getAttackDamage()) + " physical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Area of effect | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            } else {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <red>" + player.getAbilities()[i].getDamage(player.getAttackDamage()) + " physical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Area of effect | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| <purple>Immobilizing<white> | " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            }
                         }
                     } else if (player.getAbilities()[i].getType() == 2) {
                         if (!player.getAbilities()[i].isAoe()) {
-                            abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <blue>" + player.getAbilities()[i].getDamage(player.getAbilityPower()) + " magical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Single target | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            if (!player.getAbilities()[i].isImmobilizing()) {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <blue>" + player.getAbilities()[i].getDamage(player.getAbilityPower()) + " magical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Single target | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            } else {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <blue>" + player.getAbilities()[i].getDamage(player.getAbilityPower()) + " magical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Single target | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| <purple>Immobilizing<white> | " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            }
                         } else {
-                            abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <blue>" + player.getAbilities()[i].getDamage(player.getAbilityPower()) + " magical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Area of effect | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            if (!player.getAbilities()[i].isImmobilizing()) {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <blue>" + player.getAbilities()[i].getDamage(player.getAbilityPower()) + " magical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Area of effect | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            } else {
+                                abilityState += abilityIds[i] + ". " + player.getAbilities()[i].getName() + " | <blue>" + player.getAbilities()[i].getDamage(player.getAbilityPower()) + " magical damage <white>| <blue>" + player.getAbilities()[i].getMana() + " Mana <white>| Area of effect | <green>" + player.getAbilities()[i].getVamp() + "% vamp <white>| <purple>Immobilizing<white> | " + (player.getAbilities()[i].getCooldown() - 1) + "-turn cooldown | " + player.getAbilities()[i].getCurrentCooldown() + " turns left";
+                            }
                         }
                     }
 
@@ -474,19 +539,20 @@ public class Main {
                 System.out.println(new Text("ENEMY (" + enemy.getName() + ") STATS (" + enemy.getName() + ")\n<red>Attack damage: " + enemy.getAttackDamage() + "\n<blue>Ability power: " + enemy.getAbilityPower() + "\n<yellow>Armor: " + enemy.getArmor() + "\n<cyan>Magic resist: " + enemy.getMagicResist() + "\n<purple>Penetration: " + enemy.getPenetration() + "\n<green>HP<white>:\n" + enemyState + "\n"));
             }
 
-            prompt(enemy, shop, player, manager);
+            prompt(enemy, shop, player, manager, 3);
             return;
         } else if (split[0].equalsIgnoreCase("instructions")) {
             System.out.println(new Text("INSTRUCTIONS\n\n" +
                     "<!> HOW TO PLAY\nEvery turn, you can perform one of the following actions:\n1. <red>Attack<white>: Type <cyan>\"attack [enemy index]\"<white> to deal damage to the specified enemy.\n2. <blue>Cast an ability<white>: Type <cyan>\"cast [Q/W/E] [optional enemy index]\"<white> to cast one of your abilities on the specified enemy, or all alive enemies if the ability has an area of effect.\n3. <yellow>Dodge<white>: Type <cyan>\"dodge\"<white> to go into a dodge position, increasing your dodge rate and healing you if you successfully dodge.\n4. Shop: Type <cyan>\"shop\"<white> to view the item shop.\n5. Inventory: Type <cyan>\"inventory\"<white> to view your current item inventory.\n6. <green>Buy<white>: Type <cyan>\"buy [item index]\"<white> to buy the specified item from the shop.\n7. <green>Sell<white>: Type <cyan>\"sell [item index]\"<white> to sell the specified item in your inventory.\n8. <cyan>Stats<white>: Type <cyan>\"stats\"<white> to view detailed stats about your current Champion. Type <cyan>\"stats enemy\"<white> to view detailed stats about the current enemy.\n\n" +
                     "<!> ABILITIES\nYour Champion is equipped with powerful Abilities that can be cast in battle. However, be mindful of your abilities' <blue>Mana costs<white> and cooldowns. Each ability has a different <blue>Mana cost<white> and cooldown. To check, use the <cyan>\"stats\"<white> command.\n\n" +
-                    "<!> DAMAGE\nYour Champion will deal and receive three types of damage: <red>physical<white>, <blue>magical<white>, and true. <red>Physical damage<white> scales with your <red>Attack Damage<white>. <blue>Magical damage<white> scales with your <blue>Ability Power<white>. True damage is absolute and has no scaling.\n\n" +
+                    "<!> DAMAGE\nYour Champion will deal and receive three types of damage: <red>physical<white>, <blue>magical<white>, and true. <red>Physical damage<white> scales with your <red>Attack Damage (AD)<white>. <blue>Magical damage<white> scales with your <blue>Ability Power (AP)<white>. True damage is absolute and has no scaling.\n\n" +
                     "<!> RESISTANCES AND PENETRATION\nYour Champion and enemies both have resistances that reduce the amount of incoming damage. <yellow>Armor<white> reduces the amount of incoming <red>physical damage<white>. <cyan>Magic resist<white> reduces the amount of incoming <blue>magical damage<white>. <purple>Penetration<white> ignores a portion of both <yellow>Armor<white> and <cyan>Magic resist<white>.\n\n" +
+                    "<!> IMMOBILIZATION\nSome of your Champion's abilities can <purple>Immobilize<white> the enemy, causing them to be unable to attack for the next turn.\n\n" +
                     "<!> RESOURCES\nYour Champion has a series of resources that you need to carefully manage.\n<green>HP<white>: The amount of health points your Champion has left. If this value drops to 0, it is game over!\n<green>Max HP<white>: This is the maximum amount of health points your Champion can have. <green>Healing<white> is limited by this value.\n<blue>Mana<white>: This is one of the resources required to cast abilities.\n<yellow>Gold<white>: This is the currency required to buy Items.\n<green>HP<white>, <blue>Mana<white>, and <yellow>Gold<white> will be gained upon slaying an enemy.\n\n" +
-                    "<!> SHOP AND ITEMS\nYou can purchase powerful Items from the shop. Items will give your Champion additional statistics to improve their damage, max HP, resistances, and dodge rate. <yellow>Gold<white> is required to purchase Items, and 70% of the <yellowGold<white> spent will be refunded upon selling an item. In addition, each item is unique; you cannot purchase more than one copy of each item.\n\n" +
+                    "<!> SHOP AND ITEMS\nYou can purchase powerful Items from the shop. Items will give your Champion additional statistics to improve their damage, max HP, resistances, and dodge rate. <yellow>Gold<white> is required to purchase Items, and 70% of the <yellow>Gold<white> spent will be refunded upon selling an item. In addition, each item is unique; you cannot purchase more than one copy of each item.\n\n" +
                     "<!> CRESTS\nCrests are an additional buff for your Champion. Each Crest lasts for 3 waves.\n<red>Crest of Cinders<white>: You will deal <yellow>10%<white> of the target's current HP as true damage upon attacking. It can only be obtained by defeating the <red>Red Brambleback<white>.\n<blue>Crest of Insight<white>: You will use <yellow>10%<white> less <blue>Mana<white> upon casting an ability. You will also gain <yellow>5%<white> additional <blue>Mana<white> upon slaying an enemy. It can only be obtained from the <blue>Blue Sentinel<white>."));
 
-            prompt(enemy, shop, player, manager);
+            prompt(enemy, shop, player, manager, 3);
             return;
         }
 
@@ -499,15 +565,20 @@ public class Main {
                 System.out.println(new Text("<red>Failed to wait. Skipping wait time..."));
             }
 
-            enemy.attack(player);
+            if (!enemy.isImmobilized()) {
+                enemy.attack(player);
 
-            if (player.getHp() <= 0) {
-                System.out.println(new Text("<red>You died... Game over!"));
-                manager.setWave(100);
-                return;
+                if (player.getHp() <= 0) {
+                    System.out.println(new Text("<red>You died... Game over!"));
+                    manager.setWave(100);
+                    return;
+                }
+            } else {
+                enemy.setImmobilized(false);
+                System.out.println(new Text("Because the enemy is currently <purple>Immobilized<white>, they are unable to attack you this turn."));
             }
 
-            prompt(enemy, shop, player, manager);
+            prompt(enemy, shop, player, manager, 0);
         } else {
             System.out.println(new Text("You have successfully cleared this wave!"));
             manager.incrementWave();
@@ -526,6 +597,25 @@ public class Main {
         for (i = 0; i < player.getAbilities().length; i++) {
             if (player.getAbilities()[i].getCurrentCooldown() > 0) {
                 player.getAbilities()[i].setCurrentCooldown(1, 1);
+            }
+        }
+    }
+    public static void checkBuffs(Player player) {
+        int i;
+
+        for (i = 0; i < player.getBuffs().length; i++) {
+            if (player.getBuffs()[i] != null) {
+                player.getBuffs()[i].decrementWaves();
+
+                if (player.getBuffs()[i].getWavesLeft() < 0) {
+                    if (player.getBuffs()[i].getType() == 1) {
+                        System.out.println(new Text("Your <red>Crest of Cinders<white> has expired!"));
+                    } else if (player.getBuffs()[i].getType() == 2) {
+                        System.out.println(new Text("Your <blue>Crest of Insight<white> has expired!"));
+                    }
+
+                    player.getBuffs()[i] = null;
+                }
             }
         }
     }
@@ -550,6 +640,10 @@ public class Main {
         } else if (manager.getWave() >= 4 && manager.getWave() < 6) {
             random = randomNumber(3, 4);
         } else if (manager.getWave() >= 6 && manager.getWave() < 9) {
+            random = randomNumber(5, 7);
+        } else if (manager.getWave() >= 9 && manager.getWave() < 11) {
+            random = randomNumber(3, 4);
+        } else if (manager.getWave() >= 11 && manager.getWave() < 14) {
             random = randomNumber(5, 7);
         } else {
             random = randomNumber(1, 7);
@@ -670,33 +764,33 @@ class Player extends Biotic {
         this.maxHp = hp;
         this.criticalChance = criticalChance;
         this.champId = champId;
-        this.gold = 100;
+        this.gold = 200;
         this.mana = mana;
         this.name = name;
         this.dodging = false;
 
         switch (this.champId) {
             case 1:
-                abilities[0] = new Ability(75, 110, 1, 1, 0, 30, false, "Steel Tempest");
-                abilities[1] = new Ability(50, 50, 2, 2, 20, 100, true, "Wind Wall");
-                abilities[2] = new Ability(150, 120, 1, 3, 50, 0, true, "Galeforce");
+                abilities[0] = new Ability(75, 110, 1, 1, 0, 30, false, false, "Steel Tempest");
+                abilities[1] = new Ability(50, 50, 2, 2, 20, 100, true, false, "Wind Wall");
+                abilities[2] = new Ability(150, 120, 1, 3, 50, 0, true, false, "Galeforce");
                 break;
             case 2:
-                abilities[0] = new Ability(90, 100, 1, 1, 30, 0, false, "Zap!");
-                abilities[1] = new Ability(50, 70, 2, 1,50, 40, true, "Flame Chompers");
-                abilities[2] = new Ability(160, 150, 1, 3, 100, 10, true, "Super Mega Death Rocket");
+                abilities[0] = new Ability(90, 95, 1, 1, 20, 0, false, false, "Zap!");
+                abilities[1] = new Ability(40, 70, 2, 1,30, 50, true, true, "Flame Chompers");
+                abilities[2] = new Ability(160, 150, 1, 3, 60, 30, true, false, "Super Mega Death Rocket");
                 break;
             case 3:
-                abilities[0] = new Ability(100, 120, 2, 1, 30, 50, false, "Seismic Shard");
-                abilities[1] = new Ability(80, 90, 2, 2, 25, 20, true, "Thunderclap");
-                abilities[2] = new Ability(160, 110, 2, 3, 70, 0, true, "Unstoppable Force");
+                abilities[0] = new Ability(100, 120, 2, 1, 30, 70, false, false, "Seismic Shard");
+                abilities[1] = new Ability(80, 90, 2, 2, 20, 20, true, false, "Thunderclap");
+                abilities[2] = new Ability(160, 110, 2, 3, 70, 0, true, true, "Unstoppable Force");
                 break;
             case 4:
                 break;
             default:
-                abilities[0] = new Ability(80, 110, 1, 1, 0, 30, false, "Steel Tempest");
-                abilities[1] = new Ability(20, 50, 2, 2, 0, 100, true, "Wind Wall");
-                abilities[2] = new Ability(150, 120, 1, 3, 50, 0, true, "Galeforce");
+                abilities[0] = new Ability(75, 110, 1, 1, 0, 30, false, false, "Steel Tempest");
+                abilities[1] = new Ability(50, 50, 2, 2, 20, 100, true, false, "Wind Wall");
+                abilities[2] = new Ability(150, 120, 1, 3, 50, 0, true, false, "Galeforce");
                 break;
         }
     }
@@ -789,6 +883,10 @@ class Player extends Biotic {
 
         damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
 
+        if (abilities[index].isImmobilizing()) {
+            target.setImmobilized(true);
+        }
+
         if (!abilities[index].isAoe()) {
             target.setHp(damage, i, 1);
 
@@ -838,9 +936,17 @@ class Player extends Biotic {
 
             if (abilities[index].getVamp() == 0 || this.hp >= this.maxHp) {
                 if (abilities[index].getType() == 1) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>."));
+                    if (!abilities[index].isImmobilizing()) {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>."));
+                    } else {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>."));
+                    }
                 } else if (abilities[index].getType() == 2) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>."));
+                    if (!abilities[index].isImmobilizing()) {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>."));
+                    } else {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>."));
+                    }
                 }
             } else {
                 heal = (int) (damage * ((float) (abilities[index].getVamp()) / 100.0f)) * hasDamaged;
@@ -848,9 +954,17 @@ class Player extends Biotic {
                 this.hp += heal;
 
                 if (abilities[index].getType() == 1) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
+                    if (!abilities[index].isImmobilizing()) {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
+                    } else {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
+                    }
                 } else if (abilities[index].getType() == 2) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
+                    if (!abilities[index].isImmobilizing()) {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
+                    } else {
+                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
+                    }
                 }
             }
 
@@ -907,31 +1021,31 @@ class Player extends Biotic {
     private void slaySingle(Enemy target, int heal, int mana, int gold) {
         if (heal > 0) {
             if (target.getId() < 3) {
-                System.out.println(new Text("You have slain one of the " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>."));
+                System.out.println(new Text("You have slain one of the " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
             } else {
                 switch (target.getId()) {
                     case 3:
                         this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
                         break;
                     case 4:
                         this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
                         break;
                     case 5:
                         this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
                         this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
                         break;
                     case 6:
                         this.setArmor((int) (0.25 * this.getArmor()), 0);
                         this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
                         break;
                     case 7:
                         this.maxHp = (int) (1.25 * this.getMaxHp());
                         this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>max HP<white> and <yellow>5% Penetration<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>max HP<white> and <yellow>5% Penetration<white>."));
                         break;
                 }
             }
@@ -942,26 +1056,26 @@ class Player extends Biotic {
                 switch (target.getId()) {
                     case 3:
                         this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
                         break;
                     case 4:
                         this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
                         break;
                     case 5:
                         this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
                         this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
                         break;
                     case 6:
                         this.setArmor((int) (0.25 * this.getArmor()), 0);
                         this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
                         break;
                     case 7:
                         this.maxHp = (int) (1.25 * this.getMaxHp());
                         this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>max HP<white> and <yellow>5% Penetration<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>max HP<white> and <yellow>5% Penetration<white>."));
                         break;
                 }
             }
@@ -970,61 +1084,61 @@ class Player extends Biotic {
     private void slayMulti(Enemy target, int hasSlain, int heal, int mana, int gold) {
         if (heal > 0) {
             if (target.getId() < 3) {
-                System.out.println(new Text("You have slain <yellow>" + hasSlain + " <white>enemies with this ability! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow> " + gold + " Gold<white>."));
+                System.out.println(new Text("You have slain <yellow>" + hasSlain + " <white>enemies with this ability! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
             } else {
                 switch (target.getId()) {
                     case 3:
                         this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
                         break;
                     case 4:
                         this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
                         break;
                     case 5:
                         this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
                         this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
                         break;
                     case 6:
                         this.setArmor((int) (0.25 * this.getArmor()), 0);
                         this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
                         break;
                     case 7:
                         this.maxHp = (int) (1.25 * this.getMaxHp());
                         this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>HP<white> and <yellow>5% Penetration<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>HP<white> and <yellow>5% Penetration<white>."));
                         break;
                 }
             }
         } else {
             if (target.getId() < 3) {
-                System.out.println(new Text("You have slain <yellow>" + hasSlain + " <white>enemies with this ability! You regained <blue>" + mana + " Mana<white>, and <yellow> " + gold + " Gold<white>."));
+                System.out.println(new Text("You have slain <yellow>" + hasSlain + " <white>enemies with this ability! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
             } else {
                 switch (target.getId()) {
                     case 3:
                         this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as damage."));
                         break;
                     case 4:
                         this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>5%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
                         break;
                     case 5:
                         this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
                         this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
                         break;
                     case 6:
                         this.setArmor((int) (0.25 * this.getArmor()), 0);
                         this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
                         break;
                     case 7:
                         this.maxHp = (int) (1.25 * this.getMaxHp());
                         this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white>, and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>HP<white> and <yellow>5% Penetration<white>."));
+                        System.out.println(new Text("You have slain a " + target.getName() + "! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>HP<white> and <yellow>5% Penetration<white>."));
                         break;
                 }
             }
@@ -1115,6 +1229,7 @@ class Enemy extends Biotic {
     private int id; // Raptors: 1, Gromp: 2, Red: 3, Blue: 4, Infernal: 5, Mountain: 6, Ocean: 7, Kayn: 8
     private String name;
     private int reward;
+    private boolean immobilized;
 
     public Enemy(int[] hp, int speed, int armor, int magicResist, int penetration, int attackDamage, int abilityPower, int type, int count, int id, String name, int reward) {
         super(speed, armor, magicResist, penetration, attackDamage, abilityPower);
@@ -1125,6 +1240,7 @@ class Enemy extends Biotic {
         this.id = id;
         this.name = name;
         this.reward = reward;
+        this.immobilized = false;
     }
 
     public void attack(Player target) {
@@ -1177,6 +1293,8 @@ class Enemy extends Biotic {
     public int getId() { return this.id; }
     public String getName() { return this.name; }
     public int getReward() { return this.reward; }
+    public int getType() { return this.type; }
+    public boolean isImmobilized() { return this.immobilized; }
 
     public void setCount(int count) {
         this.count -= count;
@@ -1187,6 +1305,9 @@ class Enemy extends Biotic {
         } else if (type == 1) {
             this.hp[index] -= hp;
         }
+    }
+    public void setImmobilized(boolean immobilized) {
+        this.immobilized = immobilized;
     }
 }
 
@@ -1200,10 +1321,10 @@ class Kayn extends Enemy {
 
 class Ability {
     private int baseDamage, scaling, type, cooldown, mana, vamp, currentCooldown = 0;
-    private boolean aoe;
+    private boolean aoe, immobilizing;
     private String name;
 
-    public Ability(int baseDamage, int scaling, int type, int cooldown, int mana, int vamp, boolean aoe, String name) {
+    public Ability(int baseDamage, int scaling, int type, int cooldown, int mana, int vamp, boolean aoe, boolean immobilizing, String name) {
         this.baseDamage = baseDamage;
         this.scaling = scaling;
         this.type = type; // AD: 1, AP: 2
@@ -1211,6 +1332,7 @@ class Ability {
         this.mana = mana;
         this.vamp = vamp;
         this.aoe = aoe;
+        this.immobilizing = immobilizing;
         this.name = name;
     }
 
@@ -1239,6 +1361,7 @@ class Ability {
     public boolean isAoe() {
         return this.aoe;
     }
+    public boolean isImmobilizing() { return this.immobilizing; }
     public String getName() { return this.name; }
 
     public void setCurrentCooldown(int cooldown, int type) { // 0: =, 1: -=
