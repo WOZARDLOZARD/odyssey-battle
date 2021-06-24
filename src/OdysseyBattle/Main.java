@@ -1,3 +1,5 @@
+package OdysseyBattle;
+
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -90,7 +92,7 @@ public class Main {
 
             if (i < player.getAbilities().length - 1) abilityState += "\n";
         }
-        System.out.println(new Text("YOUR CHAMPION (" + player.getName() + ") STATS\n\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " Ability Power<white>\nResistances: <yellow>" + player.getArmor() + " Armor<white>, <cyan>" + player.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + player.getPenetration() + "% Penetration<white>, <red>" + player.getCriticalChance() + "% Critical Strike Chance<white>, " + player.getSpeed() + " Move Speed\n\nAbilities\n" + abilityState));
+        System.out.println(new Text("YOUR CHAMPION (" + player.getName() + ") STATS\n\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " OdysseyBattle.Ability Power<white>\nResistances: <yellow>" + player.getArmor() + " Armor<white>, <cyan>" + player.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + player.getPenetration() + "% Penetration<white>, <red>" + player.getCriticalChance() + "% Critical Strike Chance<white>, " + player.getSpeed() + " Move Speed\n\nAbilities\n" + abilityState));
 
         System.out.println(new Text("\n<white>And that's it! See if you can make it alive! Remember, you can always type <cyan>\"instructions\"<white> anytime during the battle for reminders on how the game works and <cyan>\"exit\"<white> to exit the game.\nLast but not least: <yellow>Good luck!\n\n<white>Press any key to begin the battle."));
 
@@ -157,7 +159,7 @@ public class Main {
             }
 
             previous = random;
-            
+
             random = randomNumber(1, 2);
 
             enemyState = "";
@@ -170,7 +172,7 @@ public class Main {
 
             enemyState += "Resistances: <yellow>" + enemy.getArmor() + " Armor<white>, <cyan>" + enemy.getMagicResist() + " Magic resist<white>\n\n";
             enemyState += "HP:\n";
-            
+
             for (i = 0; i < enemy.getTotal(); i++) {
                 if (enemy.getHp()[i] > 0) {
                     enemyState += (i + 1) + ". <green>" + enemy.getHp()[i] + " HP<white>";
@@ -179,10 +181,10 @@ public class Main {
             }
 
             if (random == 1) {
-                System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered " + enemy.getName() + "<white>!\n\nYOUR QUICK STATS\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " Ability Power<white>\n\nENEMY QUICK STATS\n" + enemyState + "\n\n<white>It is currently <red>the enemy's <white>turn."));
-                
+                System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered " + enemy.getName() + "<white>!\n\nYOUR QUICK STATS\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " OdysseyBattle.Ability Power<white>\n\nENEMY QUICK STATS\n" + enemyState + "\n\n<white>It is currently <red>the enemy's <white>turn."));
+
                 checkBuffs(player);
-                
+
                 try {
                     TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {
@@ -199,25 +201,25 @@ public class Main {
 
                 prompt(enemy, shop, player, manager, 2);
             } else if (random == 2) {
-                System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered " + enemy.getName() + "<white>!\n\nYOUR QUICK STATS\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " Ability Power<white>\n\nENEMY QUICK STATS\n" + enemyState + "\n\n<white>It is currently <green>your <white>turn."));
-                
+                System.out.println(new Text("WAVE " + (manager.getWave() + 1) + "\n\nYou encountered " + enemy.getName() + "<white>!\n\nYOUR QUICK STATS\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " OdysseyBattle.Ability Power<white>\n\nENEMY QUICK STATS\n" + enemyState + "\n\n<white>It is currently <green>your <white>turn."));
+
                 checkBuffs(player);
-                
+
                 prompt(enemy, shop, player, manager, 1);
             }
         }
 
         if (manager.getWave() == 14) {
-            System.out.println(new Text("You emerge from the chaos of the fighting with your Champion, worn but relieved. You can see your ship in the distance, and you can almost envision yourself taking off from this cursed planet already.\n\n<red>Suddenly, you see a flash ahead. An orb of light is steadily growing, emitting bolts of lighting in all directions. You are rooted to the spot in curiosity (and likely fear) as you watch a giant holographic scythe emerge from the light.<white>\n\"Not again...\" You think to yourself. You can almost feel your Champion thinking the same way.\n\n<!> Congrats, anonymous player, for reaching this point in the game. However, one more challenge stands in your path: the infamous Final Villain, known by many across the galaxy as Kayn. Anything and everything that Kayn slashes and reaps with his deadly blade stands no chance.\nAre you up to this tall task? Let's find out! Press any key to start the Final Battle."));
+            System.out.println(new Text("You emerge from the chaos of the fighting with your Champion, worn but relieved. You can see your ship in the distance, and you can almost envision yourself taking off from this cursed planet already.\n\n<red>Suddenly, you see a flash ahead. An orb of light is steadily growing, emitting bolts of lighting in all directions. You are rooted to the spot in curiosity (and likely fear) as you watch a giant holographic scythe emerge from the light.<white>\n\"Not again...\" You think to yourself. You can almost feel your Champion thinking the same way.\n\n<!> Congrats, anonymous player, for reaching this point in the game. However, one more challenge stands in your path: the infamous Final Villain, known by many across the galaxy as OdysseyBattle.Kayn. Anything and everything that OdysseyBattle.Kayn slashes and reaps with his deadly blade stands no chance.\nAre you up to this tall task? Let's find out! Press any key to start the Final Battle."));
 
             scanner = new Scanner(System.in);
             scanner.nextLine();
 
-            kayn = new Kayn(new int[]{1950}, 300, 40, 30, 25, 80, 65, 40, 200, 1, 11, "<red>Kayn<white>", 0);
+            kayn = new Kayn(new int[]{1950}, 300, 40, 30, 25, 80, 65, 40, 200, 1, 11, "<red>OdysseyBattle.Kayn<white>", 0);
 
-            enemyState = "Resources: <green>" + kayn.getHp()[0] + "/" + kayn.getMaxHp() + " HP<white>, <blue>" + kayn.getMana() + " Mana<white>\nDamage: <red>" + kayn.getAttackDamage() + " Attack Damage<white>, <blue>" + kayn.getAbilityPower() + " Ability Power<white>\nResistances: <yellow>" + kayn.getArmor() + " Armor<white>, <cyan>" + kayn.getMagicResist() + " Magic resist<white>";
+            enemyState = "Resources: <green>" + kayn.getHp()[0] + "/" + kayn.getMaxHp() + " HP<white>, <blue>" + kayn.getMana() + " Mana<white>\nDamage: <red>" + kayn.getAttackDamage() + " Attack Damage<white>, <blue>" + kayn.getAbilityPower() + " OdysseyBattle.Ability Power<white>\nResistances: <yellow>" + kayn.getArmor() + " Armor<white>, <cyan>" + kayn.getMagicResist() + " Magic resist<white>";
 
-            System.out.println(new Text("YOUR QUICK STATS\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " Ability Power<white>\n\nENEMY QUICK STATS\n" + enemyState + "\n"));
+            System.out.println(new Text("YOUR QUICK STATS\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " OdysseyBattle.Ability Power<white>\n\nENEMY QUICK STATS\n" + enemyState + "\n"));
 
             random = randomNumber(1, 2);
 
@@ -247,7 +249,7 @@ public class Main {
                 promptKayn(kayn, shop, player, manager, 1);
             }
 
-            System.out.println(new Text("You watch in shock as Kayn and his scythe disintegrate into pixels of light. Somehow, you managed to defeat the all-powerful Final Villain with the help of your Champion. You can hardly believe it as you step onto your spaceship and prepare for takeoff.\n\n<red>On the other side of Odyssey, the true Kayn in his demonic palace laughs at your foolishness, picks up his scythe, and heads towards his own spaceship.\n\n<yellow>CONGRATULATIONS! <green>YOU WIN...?"));
+            System.out.println(new Text("You watch in shock as OdysseyBattle.Kayn and his scythe disintegrate into pixels of light. Somehow, you managed to defeat the all-powerful Final Villain with the help of your Champion. You can hardly believe it as you step onto your spaceship and prepare for takeoff.\n\n<red>On the other side of Odyssey, the true OdysseyBattle.Kayn in his demonic palace laughs at your foolishness, picks up his scythe, and heads towards his own spaceship.\n\n<yellow>CONGRATULATIONS! <green>YOU WIN...?"));
         }
 
         System.out.println(new Text("Play again? Please enter <green>Yes<white> or <red>No<white>."));
@@ -270,7 +272,7 @@ public class Main {
             System.exit(0);
         }
     }
-    
+
     public static void prompt(Enemy enemy, Shop shop, Player player, Manager manager, int detailed) {
         Scanner scanner;
         String input, shopState, enemyState, abilityState, buffState;
@@ -733,7 +735,7 @@ public class Main {
                     buffState = "No Crests";
                 }
 
-                System.out.println(new Text("YOUR CHAMPION (" + player.getName() + ") STATS\n\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " Ability Power<white>\nResistances: <yellow>" + player.getArmor() + " Armor<white>, <cyan>" + player.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + player.getPenetration() + "% Penetration<white>, <red>" + player.getCriticalChance() + "% Critical Strike Chance<white>, " + player.getSpeed() + " Move Speed\n\nCrests: " + buffState + "\n\nAbilities\n" + abilityState + "\n"));
+                System.out.println(new Text("YOUR CHAMPION (" + player.getName() + ") STATS\n\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " OdysseyBattle.Ability Power<white>\nResistances: <yellow>" + player.getArmor() + " Armor<white>, <cyan>" + player.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + player.getPenetration() + "% Penetration<white>, <red>" + player.getCriticalChance() + "% Critical Strike Chance<white>, " + player.getSpeed() + " Move Speed\n\nCrests: " + buffState + "\n\nAbilities\n" + abilityState + "\n"));
             } else if (split.length > 1 && split[1].equalsIgnoreCase("enemy")) {
                 enemyState = "";
                 for (i = 0; i < enemy.getTotal(); i++) {
@@ -743,16 +745,16 @@ public class Main {
                     }
                 }
 
-                System.out.println(new Text("ENEMY (" + enemy.getName() + ") STATS\n\nDamage: <red>" + enemy.getAttackDamage() + " Attack Damage<white>, <blue>" + enemy.getAbilityPower() + " Ability Power<white>\nResistances: <yellow>" + enemy.getArmor() + " Armor<white>, <cyan>" + enemy.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + enemy.getPenetration() + "% Penetration<white>\n<green>HP<white>:\n" + enemyState + "\n"));
+                System.out.println(new Text("ENEMY (" + enemy.getName() + ") STATS\n\nDamage: <red>" + enemy.getAttackDamage() + " Attack Damage<white>, <blue>" + enemy.getAbilityPower() + " OdysseyBattle.Ability Power<white>\nResistances: <yellow>" + enemy.getArmor() + " Armor<white>, <cyan>" + enemy.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + enemy.getPenetration() + "% Penetration<white>\n<green>HP<white>:\n" + enemyState + "\n"));
             }
 
             prompt(enemy, shop, player, manager, 3);
             return;
         } else if (split[0].equalsIgnoreCase("instructions")) {
             System.out.println(new Text("INSTRUCTIONS\n\n" +
-                    "<!> HOW TO PLAY\nEvery turn, you can perform one of the following actions:\n1. <red>Attack<white>: Type <cyan>\"attack [enemy index]\"<white> to deal damage to the specified enemy.\n2. <blue>Cast an ability<white>: Type <cyan>\"cast [Q/W/E] [optional enemy index]\"<white> to cast one of your abilities on the specified enemy, or all alive enemies if the ability has an area of effect.\n3. <yellow>Dodge<white>: Type <cyan>\"dodge\"<white> to go into a dodge position, increasing your dodge rate and healing you if you successfully dodge.\n4. Shop: Type <cyan>\"shop\"<white> to view the item shop.\n5. Inventory: Type <cyan>\"inventory\"<white> to view your current item inventory.\n6. <green>Buy<white>: Type <cyan>\"buy [item index]\"<white> to buy the specified item from the shop.\n7. <green>Sell<white>: Type <cyan>\"sell [item index]\"<white> to sell the specified item in your inventory.\n8. <cyan>Stats<white>: Type <cyan>\"stats\"<white> to view detailed stats about your current Champion. Type <cyan>\"stats enemy\"<white> to view detailed stats about the current enemy.\n\n" +
+                    "<!> HOW TO PLAY\nEvery turn, you can perform one of the following actions:\n1. <red>Attack<white>: Type <cyan>\"attack [enemy index]\"<white> to deal damage to the specified enemy.\n2. <blue>Cast an ability<white>: Type <cyan>\"cast [Q/W/E] [optional enemy index]\"<white> to cast one of your abilities on the specified enemy, or all alive enemies if the ability has an area of effect.\n3. <yellow>Dodge<white>: Type <cyan>\"dodge\"<white> to go into a dodge position, increasing your dodge rate and healing you if you successfully dodge.\n4. OdysseyBattle.Shop: Type <cyan>\"shop\"<white> to view the item shop.\n5. Inventory: Type <cyan>\"inventory\"<white> to view your current item inventory.\n6. <green>Buy<white>: Type <cyan>\"buy [item index]\"<white> to buy the specified item from the shop.\n7. <green>Sell<white>: Type <cyan>\"sell [item index]\"<white> to sell the specified item in your inventory.\n8. <cyan>Stats<white>: Type <cyan>\"stats\"<white> to view detailed stats about your current Champion. Type <cyan>\"stats enemy\"<white> to view detailed stats about the current enemy.\n\n" +
                     "<!> ABILITIES\nYour Champion is equipped with powerful Abilities that can be cast in battle. However, be mindful of your abilities' <blue>Mana costs<white> and cooldowns. Each ability has a different <blue>Mana cost<white> and cooldown. To check, use the <cyan>\"stats\"<white> command.\n\n" +
-                    "<!> DAMAGE\nYour Champion will deal and receive three types of damage: <red>physical<white>, <blue>magical<white>, and true. <red>Physical damage<white> scales with your <red>Attack Damage (AD)<white>. <blue>Magical damage<white> scales with your <blue>Ability Power (AP)<white>. True damage is absolute and has no scaling.\n\n" +
+                    "<!> DAMAGE\nYour Champion will deal and receive three types of damage: <red>physical<white>, <blue>magical<white>, and true. <red>Physical damage<white> scales with your <red>Attack Damage (AD)<white>. <blue>Magical damage<white> scales with your <blue>OdysseyBattle.Ability Power (AP)<white>. True damage is absolute and has no scaling.\n\n" +
                     "<!> RESISTANCES AND PENETRATION\nYour Champion and enemies both have resistances that reduce the amount of incoming damage. <yellow>Armor<white> reduces the amount of incoming <red>physical damage<white>. <cyan>Magic resist<white> reduces the amount of incoming <blue>magical damage<white>. <purple>Penetration<white> ignores a portion of both <yellow>Armor<white> and <cyan>Magic resist<white>.\n\n" +
                     "<!> IMMOBILIZATION\nSome of your Champion's abilities can <purple>Immobilize<white> the enemy, causing them to be unable to attack for the next turn.\n\n" +
                     "<!> RESOURCES\nYour Champion has a series of resources that you need to carefully manage.\n<green>HP<white>: The amount of health points your Champion has left. If this value drops to 0, it is game over!\n<green>Max HP<white>: This is the maximum amount of health points your Champion can have. <green>Healing<white> is limited by this value.\n<blue>Mana<white>: This is one of the resources required to cast abilities.\n<yellow>Gold<white>: This is the currency required to buy Items.\n<green>HP<white>, <blue>Mana<white>, and <yellow>Gold<white> will be gained upon slaying an enemy.\n\n" +
@@ -1254,9 +1256,9 @@ public class Main {
                     buffState = "No Crests";
                 }
 
-                System.out.println(new Text("YOUR CHAMPION (" + player.getName() + ") STATS\n\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " Ability Power<white>\nResistances: <yellow>" + player.getArmor() + " Armor<white>, <cyan>" + player.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + player.getPenetration() + "% Penetration<white>, <red>" + player.getCriticalChance() + "% Critical Strike Chance<white>, " + player.getSpeed() + " Move Speed\n\nCrests: " + buffState + "\n\nAbilities\n" + abilityState + "\n"));
+                System.out.println(new Text("YOUR CHAMPION (" + player.getName() + ") STATS\n\nResources: <green>" + player.getHp() + "/" + player.getMaxHp() + " HP<white>, <blue>" + player.getMana() + " Mana<white>, <yellow>" + player.getGold() + " Gold<white>\nDamage: <red>" + player.getAttackDamage() + " Attack Damage<white>, <blue>" + player.getAbilityPower() + " OdysseyBattle.Ability Power<white>\nResistances: <yellow>" + player.getArmor() + " Armor<white>, <cyan>" + player.getMagicResist() + " Magic Resist<white>\nMiscellaneous: <purple>" + player.getPenetration() + "% Penetration<white>, <red>" + player.getCriticalChance() + "% Critical Strike Chance<white>, " + player.getSpeed() + " Move Speed\n\nCrests: " + buffState + "\n\nAbilities\n" + abilityState + "\n"));
             } else if (split.length > 1 && split[1].equalsIgnoreCase("enemy")) {
-                enemyState = "Resources: <green>" + enemy.getHp()[0] + "/" + enemy.getMaxHp() + " HP<white>, <blue>" + enemy.getMana() + " Mana<white>\nDamage: <red>" + enemy.getAttackDamage() + " Attack Damage<white>, <blue>" + enemy.getAbilityPower() + " Ability Power<white>\nResistances: <yellow>" + enemy.getArmor() + " Armor<white>, <cyan>" + enemy.getMagicResist() + " Magic resist<white>\nMiscellaneous: <purple>" + enemy.getPenetration() + "%<white>, <red>" + enemy.getCriticalChance() + "% Critical Strike Chance<white>, " + enemy.getSpeed() + " Move Speed";
+                enemyState = "Resources: <green>" + enemy.getHp()[0] + "/" + enemy.getMaxHp() + " HP<white>, <blue>" + enemy.getMana() + " Mana<white>\nDamage: <red>" + enemy.getAttackDamage() + " Attack Damage<white>, <blue>" + enemy.getAbilityPower() + " OdysseyBattle.Ability Power<white>\nResistances: <yellow>" + enemy.getArmor() + " Armor<white>, <cyan>" + enemy.getMagicResist() + " Magic resist<white>\nMiscellaneous: <purple>" + enemy.getPenetration() + "%<white>, <red>" + enemy.getCriticalChance() + "% Critical Strike Chance<white>, " + enemy.getSpeed() + " Move Speed";
 
                 abilityState = "";
                 for (i = 0; i < enemy.getAbilities().length; i++) {
@@ -1280,9 +1282,9 @@ public class Main {
             return;
         } else if (split[0].equalsIgnoreCase("instructions")) {
             System.out.println(new Text("INSTRUCTIONS\n\n" +
-                    "<!> HOW TO PLAY\nEvery turn, you can perform one of the following actions:\n1. <red>Attack<white>: Type <cyan>\"attack [enemy index]\"<white> to deal damage to the specified enemy.\n2. <blue>Cast an ability<white>: Type <cyan>\"cast [Q/W/E] [optional enemy index]\"<white> to cast one of your abilities on the specified enemy, or all alive enemies if the ability has an area of effect.\n3. <yellow>Dodge<white>: Type <cyan>\"dodge\"<white> to go into a dodge position, increasing your dodge rate and healing you if you successfully dodge.\n4. Shop: Type <cyan>\"shop\"<white> to view the item shop.\n5. Inventory: Type <cyan>\"inventory\"<white> to view your current item inventory.\n6. <green>Buy<white>: Type <cyan>\"buy [item index]\"<white> to buy the specified item from the shop.\n7. <green>Sell<white>: Type <cyan>\"sell [item index]\"<white> to sell the specified item in your inventory.\n8. <cyan>Stats<white>: Type <cyan>\"stats\"<white> to view detailed stats about your current Champion. Type <cyan>\"stats enemy\"<white> to view detailed stats about the current enemy.\n\n" +
+                    "<!> HOW TO PLAY\nEvery turn, you can perform one of the following actions:\n1. <red>Attack<white>: Type <cyan>\"attack [enemy index]\"<white> to deal damage to the specified enemy.\n2. <blue>Cast an ability<white>: Type <cyan>\"cast [Q/W/E] [optional enemy index]\"<white> to cast one of your abilities on the specified enemy, or all alive enemies if the ability has an area of effect.\n3. <yellow>Dodge<white>: Type <cyan>\"dodge\"<white> to go into a dodge position, increasing your dodge rate and healing you if you successfully dodge.\n4. OdysseyBattle.Shop: Type <cyan>\"shop\"<white> to view the item shop.\n5. Inventory: Type <cyan>\"inventory\"<white> to view your current item inventory.\n6. <green>Buy<white>: Type <cyan>\"buy [item index]\"<white> to buy the specified item from the shop.\n7. <green>Sell<white>: Type <cyan>\"sell [item index]\"<white> to sell the specified item in your inventory.\n8. <cyan>Stats<white>: Type <cyan>\"stats\"<white> to view detailed stats about your current Champion. Type <cyan>\"stats enemy\"<white> to view detailed stats about the current enemy.\n\n" +
                     "<!> ABILITIES\nYour Champion is equipped with powerful Abilities that can be cast in battle. However, be mindful of your abilities' <blue>Mana costs<white> and cooldowns. Each ability has a different <blue>Mana cost<white> and cooldown. To check, use the <cyan>\"stats\"<white> command.\n\n" +
-                    "<!> DAMAGE\nYour Champion will deal and receive three types of damage: <red>physical<white>, <blue>magical<white>, and true. <red>Physical damage<white> scales with your <red>Attack Damage (AD)<white>. <blue>Magical damage<white> scales with your <blue>Ability Power (AP)<white>. True damage is absolute and has no scaling.\n\n" +
+                    "<!> DAMAGE\nYour Champion will deal and receive three types of damage: <red>physical<white>, <blue>magical<white>, and true. <red>Physical damage<white> scales with your <red>Attack Damage (AD)<white>. <blue>Magical damage<white> scales with your <blue>OdysseyBattle.Ability Power (AP)<white>. True damage is absolute and has no scaling.\n\n" +
                     "<!> RESISTANCES AND PENETRATION\nYour Champion and enemies both have resistances that reduce the amount of incoming damage. <yellow>Armor<white> reduces the amount of incoming <red>physical damage<white>. <cyan>Magic resist<white> reduces the amount of incoming <blue>magical damage<white>. <purple>Penetration<white> ignores a portion of both <yellow>Armor<white> and <cyan>Magic resist<white>.\n\n" +
                     "<!> IMMOBILIZATION\nSome of your Champion's abilities can <purple>Immobilize<white> the enemy, causing them to be unable to attack for the next turn.\n\n" +
                     "<!> RESOURCES\nYour Champion has a series of resources that you need to carefully manage.\n<green>HP<white>: The amount of health points your Champion has left. If this value drops to 0, it is game over!\n<green>Max HP<white>: This is the maximum amount of health points your Champion can have. <green>Healing<white> is limited by this value.\n<blue>Mana<white>: This is one of the resources required to cast abilities.\n<yellow>Gold<white>: This is the currency required to buy Items.\n<green>HP<white>, <blue>Mana<white>, and <yellow>Gold<white> will be gained upon slaying an enemy.\n\n" +
@@ -1370,7 +1372,7 @@ public class Main {
             }
         }
     }
-    
+
     public static void error() {
         System.out.println(new Text("<red>Invalid input! <white>Please try again."));
     }
@@ -1415,1231 +1417,5 @@ public class Main {
 
     public static int randomNumber(int min, int max) {
         return (int) Math.floor(Math.random() * (max - min + 1) + min);
-    }
-}
-
-class Manager {
-    private int wave;
-
-    public Manager() {
-        this.wave = 0;
-    }
-
-    public int getWave() {
-        return this.wave;
-    }
-
-    public void incrementWave() {
-        this.wave++;
-    }
-    public void setWave(int wave) { this.wave = wave; }
-}
-
-class Biotic {
-    private int speed, armor, magicResist, penetration, attackDamage, abilityPower;
-
-    public Biotic(int speed, int armor, int magicResist, int penetration, int attackDamage, int abilityPower) {
-        this.speed = speed;
-        this.armor = armor;
-        this.magicResist = magicResist;
-        this.penetration = penetration;
-        this.attackDamage = attackDamage;
-        this.abilityPower = abilityPower;
-    }
-
-    public int getArmor() {
-        return this.armor;
-    }
-    public int getMagicResist() {
-        return this.magicResist;
-    }
-    public int getPenetration() {
-        return this.penetration;
-    }
-    public int getAttackDamage() {
-        return this.attackDamage;
-    }
-    public int getAbilityPower() {
-        return this.abilityPower;
-    }
-    public int getSpeed() {
-        return this.speed;
-    }
-
-    public void setAttackDamage(int attackDamage, int type) {
-        if (type == 0) {
-            this.attackDamage += attackDamage;
-        } else if (type == 1) {
-            this.attackDamage -= attackDamage;
-        }
-    }
-    public void setAbilityPower(int abilityPower, int type) {
-        if (type == 0) {
-            this.abilityPower += abilityPower;
-        } else if (type == 1) {
-            this.abilityPower -= abilityPower;
-        }
-    }
-    public void setArmor(int armor, int type) {
-        if (type == 0) {
-            this.armor += armor;
-        } else if (type == 1) {
-            this.armor -= armor;
-        }
-    }
-    public void setMagicResist(int magicResist, int type) {
-        if (type == 0) {
-            this.magicResist += magicResist;
-        } else if (type == 1) {
-            this.magicResist -= magicResist;
-        }
-    }
-    public void setPenetration(int penetration, int type) {
-        if (type == 0) {
-            this.penetration += penetration;
-        } else if (type == 1) {
-            this.penetration -= penetration;
-        }
-    }
-    public void setSpeed(int speed, int type) {
-        if (type == 0) {
-            this.speed += speed;
-        } else if (type == 1) {
-            this.speed -= speed;
-        }
-    }
-}
-
-class Player extends Biotic {
-    private int champId; // Yasuo: 1, Jinx: 2, Malphite: 3
-    private int hp, maxHp, gold, mana, criticalChance;
-    private Ability[] abilities = new Ability[3];
-    private Item[] inventory = new Item[6];
-    private Buff[] buffs = new Buff[2];
-    private String name;
-    private boolean dodging;
-
-    public Player(int hp, int speed, int criticalChance, int armor, int magicResist, int penetration, int attackDamage, int abilityPower, int mana, int champId, String name) {
-        super(speed, armor, magicResist, penetration, attackDamage, abilityPower);
-        this.hp = hp;
-        this.maxHp = hp;
-        this.criticalChance = criticalChance;
-        this.champId = champId;
-        this.gold = 200;
-        this.mana = mana;
-        this.name = name;
-        this.dodging = false;
-
-        switch (this.champId) {
-            case 1:
-                abilities[0] = new Ability(75, 110, 1, 1, 0, 30, false, false, "Steel Tempest");
-                abilities[1] = new Ability(50, 50, 2, 2, 20, 100, true, false, "Wind Wall");
-                abilities[2] = new Ability(150, 120, 1, 3, 50, 0, true, false, "Galeforce");
-                break;
-            case 2:
-                abilities[0] = new Ability(90, 95, 1, 1, 5, 20, false, false, "Zap!");
-                abilities[1] = new Ability(45, 70, 2, 1,30, 50, true, true, "Flame Chompers");
-                abilities[2] = new Ability(160, 150, 1, 3, 55, 30, true, false, "Super Mega Death Rocket");
-                break;
-            case 3:
-                abilities[0] = new Ability(100, 120, 2, 1, 30, 70, false, false, "Seismic Shard");
-                abilities[1] = new Ability(80, 90, 2, 2, 20, 20, true, false, "Thunderclap");
-                abilities[2] = new Ability(160, 110, 2, 3, 70, 0, true, true, "Unstoppable Force");
-                break;
-            case 4:
-                break;
-            default:
-                abilities[0] = new Ability(75, 110, 1, 1, 0, 30, false, false, "Steel Tempest");
-                abilities[1] = new Ability(50, 50, 2, 2, 20, 100, true, false, "Wind Wall");
-                abilities[2] = new Ability(150, 120, 1, 3, 50, 0, true, false, "Galeforce");
-                break;
-        }
-    }
-
-    public void attack(Enemy target, int i) {
-        int random = randomNumber(1, 100);
-        int damage = this.getAttackDamage() - (int) (100 / (100 - (target.getArmor() * ((float) (100 - this.getPenetration()) / 100.0f))));
-        int heal, mana, gold;
-
-        if (target.getSpeed() == 0 || random > target.getSpeed() * 0.03) {
-            if (this.buffs[0] != null && this.buffs[0].getType() == 1) {
-                damage += (int) (0.1 * target.getHp()[i]);
-            }
-
-            damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
-
-            random = randomNumber(1, 100);
-
-            if (random <= this.getCriticalChance()) {
-                if (this.buffs[0] != null && this.buffs[0].getType() == 1) {
-                    System.out.println(new Text("You commanded " + this.name + " to attack, dealing <red>" + (int) (damage * 1.2) + " physical damage <yellow>(+" + (int) (damage * 1.2 - damage) + " critical damage) (+" + (int) (0.1 * target.getHp()[i]) + " Crest of Cinders damage)<white> to the " + (i + 1) + "th enemy."));
-                } else {
-                    System.out.println(new Text("You commanded " + this.name + " to attack, dealing <red>" + (int) (damage * 1.2) + " physical damage <yellow>(+" + (int) (damage * 1.2 - damage) + " critical damage) <white>to the " + (i + 1) + "th enemy."));
-                }
-
-                target.setHp((int) (damage * 1.2), i, 1);
-            } else {
-                if (this.buffs[0] != null && this.buffs[0].getType() == 1) {
-                    System.out.println(new Text("You commanded " + this.name + " to attack, dealing <red>" + damage + " physical damage <yellow>(+" + (int) (0.1 * target.getHp()[i]) + " Crest of Cinders damage)<white> to the " + (i + 1) + "th enemy."));
-                } else {
-                    System.out.println(new Text("You commanded " + this.name + " to attack, dealing <red>" + damage + " physical damage <white>to the " + (i + 1) + "th enemy."));
-                }
-
-                target.setHp(damage, i, 1);
-            }
-
-            if (target.getHp()[i] <= 0) {
-                target.setCount(1);
-
-                mana = randomNumber(20, 40);
-                if (this.buffs[1] != null && this.buffs[1].getType() == 2) {
-                    mana = (int) (1.15 * mana);
-                }
-                this.mana += mana;
-
-                if (this.hp < this.maxHp) {
-                    heal = randomNumber((int) ((2 * target.getCount() + 80) * 0.9), (int) ((2 * target.getCount() + 80) * 1.1));
-                    if (this.buffs[0] != null && this.buffs[0].getType() == 1) heal = (int) (heal * 1.3);
-                    if (heal > this.maxHp - this.hp) heal = this.maxHp - this.hp;
-                    this.hp += heal;
-                } else {
-                    heal = 0;
-                }
-
-                gold = randomNumber((int) (target.getReward() * 0.9), (int) (target.getReward() * 1.1));
-                this.gold += gold;
-
-                slaySingle(target, heal, mana, gold);
-            }
-        } else {
-            System.out.println(new Text("The enemy managed to <yellow>dodge<white> your attack!"));
-        }
-    }
-
-    public void cast(Enemy target, String id, int i) {
-        int damage, heal, mana, cost, gold, hasSlain, hasDamaged;
-        int index;
-        String[] abilityIds = new String[]{"Q", "W", "E"};
-        
-        if (id.equalsIgnoreCase("q")) {
-            index = 0;
-        } else if (id.equalsIgnoreCase("w")) {
-            index = 1;
-        } else if (id.equalsIgnoreCase("e")) {
-            index = 2;
-        } else {
-            index = 0;
-        }
-
-        this.abilities[index].setCurrentCooldown(abilities[index].getCooldown(), 0);
-        
-        if (this.buffs[1] != null && this.buffs[1].getType() == 2) {
-            cost = (int) (0.8 * abilities[index].getMana());
-        } else {
-            cost = abilities[index].getMana();
-        }
-
-        this.mana -= cost;
-
-        if (abilities[index].getType() == 1) {
-            damage = abilities[index].getDamage(this.getAttackDamage()) - (int) (100 / (100 - (target.getArmor() * ((float) (100 - this.getPenetration()) / 100.0f))));
-        } else if (abilities[index].getType() == 2) {
-            damage = abilities[index].getDamage(this.getAbilityPower()) - (int) (100 / (100 - (target.getMagicResist() * ((float) (100 - this.getPenetration()) / 100.0f))));
-        } else {
-            damage = 0;
-        }
-
-        damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
-
-        if (abilities[index].isImmobilizing()) {
-            target.setImmobilized(true);
-        }
-
-        if (!abilities[index].isAoe()) {
-            target.setHp(damage, i, 1);
-
-            if (abilities[index].getVamp() == 0 || this.hp >= this.maxHp) {
-                if (abilities[index].getType() == 1) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to the " + (i + 1) + "th enemy and consuming <blue>" + cost + " Mana<white>."));
-                } else if (abilities[index].getType() == 2) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to the " + (i + 1) + "th enemy and consuming <blue>" + cost + " Mana<white>."));
-                }
-            } else {
-                heal = (int) (damage * ((float) (abilities[index].getVamp()) / 100.0f));
-                if (heal > this.maxHp - this.hp) heal = this.maxHp - this.hp;
-                this.hp += heal;
-
-                if (abilities[index].getType() == 1) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to the " + (i + 1) + "th enemy and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                } else if (abilities[index].getType() == 2) {
-                    System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to the " + (i + 1) + "th enemy and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                }
-            }
-
-            if (target.getHp()[i] <= 0) {
-                target.setCount(1);
-
-                mana = randomNumber(20, 40);
-                if (this.buffs[1] != null && this.buffs[1].getType() == 2) {
-                    mana = (int) (1.15 * mana);
-                }
-                this.mana += mana;
-
-                if (this.hp < this.maxHp) {
-                    heal = randomNumber((int) ((2 * target.getCount() + 80) * 0.9), (int) ((2 * target.getCount() + 80) * 1.1));
-                    if (this.buffs[0] != null && this.buffs[0].getType() == 1) heal = (int) (heal * 1.3);
-                    if (heal > this.maxHp - this.hp) heal = this.maxHp - this.hp;
-                    this.hp += heal;
-                } else {
-                    heal = 0;
-                }
-
-                gold = randomNumber((int) (target.getReward() * 0.9), (int) (target.getReward() * 1.1));
-                this.gold += gold;
-
-                slaySingle(target, heal, mana, gold);
-            }
-        } else {
-            hasDamaged = 0;
-
-            for (i = 0; i < target.getTotal(); i++) {
-                if (target.getHp()[i] > 0) hasDamaged++;
-            }
-
-            if (abilities[index].getVamp() == 0 || this.hp >= this.maxHp) {
-                if (abilities[index].getType() == 1) {
-                    if (!abilities[index].isImmobilizing()) {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>."));
-                    } else {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>."));
-                    }
-                } else if (abilities[index].getType() == 2) {
-                    if (!abilities[index].isImmobilizing()) {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>."));
-                    } else {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>."));
-                    }
-                }
-            } else {
-                heal = (int) (damage * ((float) (abilities[index].getVamp()) / 100.0f)) * hasDamaged;
-                if (heal > this.maxHp - this.hp) heal = this.maxHp - this.hp;
-                this.hp += heal;
-
-                if (abilities[index].getType() == 1) {
-                    if (!abilities[index].isImmobilizing()) {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                    } else {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <red>" + damage + " physical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                    }
-                } else if (abilities[index].getType() == 2) {
-                    if (!abilities[index].isImmobilizing()) {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                    } else {
-                        System.out.println(new Text("You commanded " + this.name + " to cast their " + abilityIds[index] + " ability (" + abilities[index].getName() + "), dealing <blue>" + damage + " magical damage <white>to and <purple>immobilizing<white> all alive enemies and consuming <blue>" + cost + " Mana<white>. You also healed for <green>" + abilities[index].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                    }
-                }
-            }
-
-            hasSlain = 0;
-            mana = 0;
-            gold = 0;
-            heal = 0;
-
-            if (this.hp < this.maxHp) {
-                for (i = 0; i < target.getTotal(); i++) {
-                    if (target.getHp()[i] > 0) {
-                        target.setHp(damage, i, 1);
-
-                        if (target.getHp()[i] <= 0) {
-                            hasSlain++;
-                            target.setCount(1);
-                            mana += randomNumber(20, 40);
-                            heal += randomNumber((int) ((2 * target.getCount() + 80) * 0.9), (int) ((2 * target.getCount() + 80) * 1.1));
-                            gold += randomNumber((int) (target.getReward() * 0.9), (int) (target.getReward() * 1.1));
-                        }
-                    }
-                }
-
-                if (this.buffs[0] != null && this.buffs[0].getType() == 1) heal = (int) (heal * 1.3);
-                if (heal > this.maxHp - this.hp) heal = this.maxHp - this.hp;
-            } else {
-                for (i = 0; i < target.getTotal(); i++) {
-                    if (target.getHp()[i] > 0) {
-                        hasDamaged++;
-                        target.setHp(damage, i, 1);
-
-                        if (target.getHp()[i] <= 0) {
-                            hasSlain++;
-                            target.setCount(1);
-                            mana += randomNumber(20, 40);
-                            gold += randomNumber((int) (target.getReward() * 0.9), (int) (target.getReward() * 1.1));
-                        }
-                    }
-                }
-            }
-
-            if (this.buffs[1] != null && this.buffs[1].getType() == 2) {
-                mana = (int) (1.15 * mana);
-            }
-
-            if (hasSlain > 0) {
-                if (heal > 0) this.hp += heal;
-                this.mana += mana;
-                this.gold += gold;
-
-                slayMulti(target, hasSlain, heal, mana, gold);
-            }
-        }
-    }
-
-    private int randomNumber(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1) + min);
-    }
-    private void slaySingle(Enemy target, int heal, int mana, int gold) {
-        int i;
-
-        if (heal > 0) {
-            if (target.getId() < 3) {
-                System.out.println(new Text("You have slain one of the " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
-            } else {
-                switch (target.getId()) {
-                    case 3:
-                        this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, you will restore an extra <yellow>30%<white> <green>HP<white> on enemy takedown, and your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as true damage."));
-                        break;
-                    case 4:
-                        this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>15%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
-                        break;
-                    case 5:
-                        this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
-                        break;
-                    case 6:
-                        this.setArmor((int) (0.25 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
-                        break;
-                    case 7:
-                        this.maxHp = (int) (1.25 * this.getMaxHp());
-                        this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>max HP<white> and <yellow>5% Penetration<white>."));
-                        break;
-                    case 8:
-                        this.setSpeed((int) (0.15 * this.getSpeed()), 0);
-                        this.maxHp += (int) (1.2 * this.getMaxHp());
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(9, 0, "Eye of the Herald", "All", "15% Speed, <green>30% Max HP<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Eye of the Herald<white>! You gained 15% Speed and <green>30% Max HP<white>."));
-                        break;
-                    case 9:
-                        this.setSpeed((int) (0.2 * this.getSpeed()), 0);
-                        this.setCriticalChance(20, 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(10, 0, "Aspect of the Dragon", "All", "20% Speed, <red>20% Crit<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <cyan>Aspect of the Dragon<white>! You gained 20% Speed and <red>20% Critical Strike Chance<white>."));
-                        break;
-                    case 10:
-                        this.setAttackDamage((int) (0.15 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.15 * this.getAbilityPower()), 0);
-                        this.setArmor((int) (0.2 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.2 * this.getMagicResist()), 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(11, 0, "Hand of Baron", "All", "<red>15% AD<white>, <blue>15% AP<white>, <yellow>20% Armor<white>, <cyan>20% MR<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Hand of Baron<white>! You gained <red>15% Attack Damage<white>, <blue>15% Ability Power<white>, <yellow>20% Armor<white>, and <cyan>20% Magic Resist<white>."));
-                        break;
-                }
-            }
-        } else {
-            if (target.getId() < 3) {
-                System.out.println(new Text("You have slain one of the " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
-            } else {
-                switch (target.getId()) {
-                    case 3:
-                        this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, you will restore an extra <yellow>30%<white> <green>HP<white> on enemy takedown, and your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as true damage."));
-                        break;
-                    case 4:
-                        this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>15%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
-                        break;
-                    case 5:
-                        this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
-                        break;
-                    case 6:
-                        this.setArmor((int) (0.25 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
-                        break;
-                    case 7:
-                        this.maxHp = (int) (1.25 * this.getMaxHp());
-                        this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>max HP<white> and <yellow>5% Penetration<white>."));
-                        break;
-                    case 8:
-                        this.setSpeed((int) (0.15 * this.getSpeed()), 0);
-                        this.maxHp += (int) (1.2 * this.getMaxHp());
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(9, 0, "Eye of the Herald", "All", "15% Speed, <green>30% Max HP<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Eye of the Herald<white>! You gained 15% Speed and <green>30% Max HP<white>."));
-                        break;
-                    case 9:
-                        this.setSpeed((int) (0.2 * this.getSpeed()), 0);
-                        this.setCriticalChance(20, 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(10, 0, "Aspect of the Dragon", "All", "20% Speed, <red>20% Crit<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <cyan>Aspect of the Dragon<white>! You gained 20% Speed and <red>20% Critical Strike Chance<white>."));
-                        break;
-                    case 10:
-                        this.setAttackDamage((int) (0.15 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.15 * this.getAbilityPower()), 0);
-                        this.setArmor((int) (0.2 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.2 * this.getMagicResist()), 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(11, 0, "Hand of Baron", "All", "<red>15% AD<white>, <blue>15% AP<white>, <yellow>20% Armor<white>, <cyan>20% MR<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Hand of Baron<white>! You gained <red>15% Attack Damage<white>, <blue>15% Ability Power<white>, <yellow>20% Armor<white>, and <cyan>20% Magic Resist<white>."));
-                        break;
-                }
-            }
-        }
-    }
-    private void slayMulti(Enemy target, int hasSlain, int heal, int mana, int gold) {
-        int i;
-
-        if (heal > 0) {
-            if (target.getId() < 3) {
-                System.out.println(new Text("You have slain <yellow>" + hasSlain + " <white>enemies with this ability! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
-            } else {
-                switch (target.getId()) {
-                    case 3:
-                        this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, you will restore an extra <yellow>30%<white> <green>HP<white> on enemy takedown, and your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as true damage."));
-                        break;
-                    case 4:
-                        this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>15%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
-                        break;
-                    case 5:
-                        this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
-                        break;
-                    case 6:
-                        this.setArmor((int) (0.25 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
-                        break;
-                    case 7:
-                        this.maxHp = (int) (1.25 * this.getMaxHp());
-                        this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>HP<white> and <yellow>5% Penetration<white>."));
-                        break;
-                    case 8:
-                        this.setSpeed((int) (0.15 * this.getSpeed()), 0);
-                        this.maxHp += (int) (1.2 * this.getMaxHp());
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(9, 0, "Eye of the Herald", "All", "15% Speed, <green>30% Max HP<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Eye of the Herald<white>! You gained 15% Speed and <green>30% Max HP<white>."));
-                        break;
-                    case 9:
-                        this.setSpeed((int) (0.2 * this.getSpeed()), 0);
-                        this.setCriticalChance(20, 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(10, 0, "Aspect of the Dragon", "All", "20% Speed, <red>20% Crit<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <cyan>Aspect of the Dragon<white>! You gained 20% Speed and <red>20% Critical Strike Chance<white>."));
-                        break;
-                    case 10:
-                        this.setAttackDamage((int) (0.15 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.15 * this.getAbilityPower()), 0);
-                        this.setArmor((int) (0.2 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.2 * this.getMagicResist()), 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(11, 0, "Hand of Baron", "All", "<red>15% AD<white>, <blue>15% AP<white>, <yellow>20% Armor<white>, <cyan>20% MR<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <green>" + heal + " HP<white>, <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Hand of Baron<white>! You gained <red>15% Attack Damage<white>, <blue>15% Ability Power<white>, <yellow>20% Armor<white>, and <cyan>20% Magic Resist<white>."));
-                        break;
-                }
-            }
-        } else {
-            if (target.getId() < 3) {
-                System.out.println(new Text("You have slain <yellow>" + hasSlain + " <white>enemies with this ability! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>."));
-            } else {
-                switch (target.getId()) {
-                    case 3:
-                        this.buffs[0] = new Buff(1);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Crest of Cinders<white>! For the next 3 waves, you will restore an extra <yellow>30%<white> <green>HP<white> on enemy takedown, and your attacks will deal an extra <yellow>10%<white> of the target's <green>current HP<white> as true damage."));
-                        break;
-                    case 4:
-                        this.buffs[1] = new Buff(2);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <blue>Crest of Insight<white>! For the next 3 waves, you will restore an extra <yellow>15%<white> <blue>Mana<white> on enemy takedown, and your abilities will use <yellow>20%<white> less <blue>Mana<white>."));
-                        break;
-                    case 5:
-                        this.setAttackDamage((int) (0.25 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.25 * this.getAbilityPower()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <red>Fire Insignia<white>! You gained <yellow>25%<white> <red>attack damage<white> and <blue>ability power<white>."));
-                        break;
-                    case 6:
-                        this.setArmor((int) (0.25 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.25 * this.getMagicResist()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <yellow>Mountain Insignia<white>! You gained <yellow>25%<white> <yellow>armor<white> and <cyan>magic resist<white>."));
-                        break;
-                    case 7:
-                        this.maxHp = (int) (1.25 * this.getMaxHp());
-                        this.setPenetration((int) (0.05 * this.getPenetration()), 0);
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <green>Ocean Insignia<white>! You gained <yellow>25%<white> <green>HP<white> and <yellow>5% Penetration<white>."));
-                        break;
-                    case 8:
-                        this.setSpeed((int) (0.15 * this.getSpeed()), 0);
-                        this.maxHp += (int) (1.2 * this.getMaxHp());
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(9, 0, "Eye of the Herald", "All", "15% Speed, <green>30% Max HP<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Eye of the Herald<white>! You gained 15% Speed and <green>30% Max HP<white>."));
-                        break;
-                    case 9:
-                        this.setSpeed((int) (0.2 * this.getSpeed()), 0);
-                        this.setCriticalChance(20, 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(10, 0, "Aspect of the Dragon", "All", "20% Speed, <red>20% Crit<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <cyan>Aspect of the Dragon<white>! You gained 20% Speed and <red>20% Critical Strike Chance<white>."));
-                        break;
-                    case 10:
-                        this.setAttackDamage((int) (0.15 * this.getAttackDamage()), 0);
-                        this.setAbilityPower((int) (0.15 * this.getAbilityPower()), 0);
-                        this.setArmor((int) (0.2 * this.getArmor()), 0);
-                        this.setMagicResist((int) (0.2 * this.getMagicResist()), 0);
-
-                        for (i = 0; i < this.getInventory().length; i++) {
-                            if (this.getInventory()[i] == null) {
-                                this.getInventory()[i] = new Item(11, 0, "Hand of Baron", "All", "<red>15% AD<white>, <blue>15% AP<white>, <yellow>20% Armor<white>, <cyan>20% MR<white>", false);
-                                break;
-                            }
-                        }
-
-                        System.out.println(new Text("You have slain a " + target.getName() + "<white>! You regained <blue>" + mana + " Mana<white> and <yellow>" + gold + " Gold<white>.\n<!> You also gained the <purple>Hand of Baron<white>! You gained <red>15% Attack Damage<white>, <blue>15% Ability Power<white>, <yellow>20% Armor<white>, and <cyan>20% Magic Resist<white>."));
-                        break;
-                }
-            }
-        }
-    }
-
-    public void dodge() {
-        this.dodging = true;
-
-        System.out.println(new Text("You are now in <cyan>dodge <white>position. You cannot attack for this turn, but you have an increased dodge rate for this turn and will heal a portion of your HP for every enemy dodged."));
-    }
-
-    public int getHp() {
-        return this.hp;
-    }
-    public int getMaxHp() {
-        return this.maxHp;
-    }
-    public int getMana() {
-        return this.mana;
-    }
-    public int getCriticalChance() {
-        return this.criticalChance;
-    }
-    public Ability[] getAbilities() {
-        return this.abilities;
-    }
-    public Item[] getInventory() {
-        return this.inventory;
-    }
-    public Buff[] getBuffs() {
-        return this.buffs;
-    }
-    public boolean isDodging() {
-        return this.dodging;
-    }
-    public int getGold() { return this.gold; }
-    public String getName() { return this.name; }
-
-    public void setHp(int hp, int type) {
-        if (type == 0) {
-            this.hp += hp;
-        } else if (type == 1) {
-            this.hp -= hp;
-        }
-    }
-    public void setMaxHp(int maxHp, int type) {
-        if (type == 0) {
-            this.maxHp += maxHp;
-        } else if (type == 1) {
-            this.maxHp -= maxHp;
-        }
-    }
-    public void setGold(int gold, int type) {
-        if (type == 0) {
-            this.gold += gold;
-        } else if (type == 1) {
-            this.gold -= gold;
-        }
-    }
-    public void setMana(int mana, int type) {
-        if (type == 0) {
-            this.mana += mana;
-        } else if (type == 1) {
-            this.mana -= mana;
-        }
-    }
-    public void setCriticalChance(int criticalChance, int type) {
-        if (type == 0) {
-            this.criticalChance += criticalChance;
-        } else if (type == 1) {
-            this.criticalChance -= criticalChance;
-        }
-    }
-    public void setBuff(Buff buff, int index) {
-        this.buffs[index] = buff;
-    }
-    public void setDodging(boolean dodging) { this.dodging = dodging; }
-    public void setInventory(int index, Item item) {
-        this.inventory[index] = item;
-    }
-}
-
-class Enemy extends Biotic {
-    private int[] hp;
-    private int type; // AD: 1, AP: 2, Both: 3
-    private int count, total;
-    private int id; // Raptors: 1, Gromp: 2, Red: 3, Blue: 4, Infernal: 5, Mountain: 6, Ocean: 7, Kayn: 8
-    private String name;
-    private int reward;
-    private boolean immobilized;
-
-    public Enemy(int[] hp, int speed, int armor, int magicResist, int penetration, int attackDamage, int abilityPower, int type, int count, int id, String name, int reward) {
-        super(speed, armor, magicResist, penetration, attackDamage, abilityPower);
-        this.hp = hp;
-        this.type = type;
-        this.count = count;
-        this.total = count;
-        this.id = id;
-        this.name = name;
-        this.reward = reward;
-        this.immobilized = false;
-    }
-
-    public void attack(Player target) {
-        int random = randomNumber(1, 100);
-        int damage;
-
-        if (!target.isDodging()) {
-            if (random > target.getSpeed() * 0.03) {
-                if (this.type == 1) {
-                    damage = (this.getAttackDamage() - (100 / (100 - (target.getArmor() * ((100 - this.getPenetration()) / 100))))) * this.count;
-                    damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
-                    target.setHp(damage, 1);
-                    System.out.println(new Text("You took <red>" + damage + " physical damage<white> from the " + this.name + ". It is now <green>your <white>turn."));
-                } else if (this.type == 2) {
-                    damage = (this.getAbilityPower() - (100 / (100 - (target.getMagicResist() * ((100 - this.getPenetration()) / 100))))) * this.count;
-                    damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
-                    target.setHp(damage, 1);
-                    System.out.println(new Text("You took <cyan>" + damage + " magical damage<white> from the " + this.name + ". It is now <green>your <white>turn."));
-                }
-            } else {
-                System.out.println(new Text("You managed to <yellow>dodge<white> the enemy's attacks! It is now <green>your <white>turn."));
-            }
-        } else {
-            if (random > target.getSpeed() * 0.03 + 50) {
-                if (this.type == 1) {
-                    damage = (this.getAttackDamage() - (100 / (100 - (target.getArmor() * ((100 - this.getPenetration()) / 100))))) * this.count;
-                    damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
-                    target.setHp(damage, 1);
-                    System.out.println(new Text("You took <red>" + damage + " physical damage<white> from the " + this.name + ". It is now <green>your <white>turn."));
-                } else if (this.type == 2) {
-                    damage = (this.getAbilityPower() - (100 / (100 - (target.getMagicResist() * ((100 - this.getPenetration()) / 100))))) * this.count;
-                    damage = randomNumber((int) (damage * 0.9), (int) (damage * 1.1));
-                    target.setHp(damage, 1);
-                    System.out.println(new Text("You took <cyan>" + damage + " magical damage<white> from the " + this.name + ". It is now <green>your <white>turn."));
-                }
-            } else {
-                target.setHp(25 * this.count, 0);
-                System.out.println(new Text("You managed to <yellow>dodge<white> the enemy's attacks! You also restored <green>" + (25 * this.count) + " HP <white>for doing so. It is now <green>your <white>turn."));
-            }
-        }
-    }
-
-    private int randomNumber(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    public int[] getHp() { return this.hp; }
-    public int getCount() { return this.count; }
-    public int getTotal() { return this.total; }
-    public int getId() { return this.id; }
-    public String getName() { return this.name; }
-    public int getReward() { return this.reward; }
-    public int getType() { return this.type; }
-    public boolean isImmobilized() { return this.immobilized; }
-
-    public void setCount(int count) {
-        this.count -= count;
-    }
-    public void setHp(int hp, int index, int type) {
-        if (type == 0) {
-            this.hp[index] += hp;
-        } else if (type == 1) {
-            this.hp[index] -= hp;
-        }
-    }
-    public void setImmobilized(boolean immobilized) {
-        this.immobilized = immobilized;
-    }
-}
-
-class Kayn extends Enemy {
-    private Ability[] abilities = new Ability[3];
-    private int criticalChance, mana;
-    private int maxHp;
-
-    public Kayn(int[] hp, int speed, int armor, int magicResist, int penetration, int attackDamage, int abilityPower, int criticalChance, int mana, int type, int id, String name, int reward) {
-        super(hp, speed, armor, magicResist, penetration, attackDamage, abilityPower, type, 1, id, name, reward);
-        this.maxHp = hp[0];
-        this.criticalChance = criticalChance;
-        this.mana = mana;
-
-        abilities[0] = new Ability(80, 90, 1, 1, 10, 50, false, false, "Reaping Slash");
-        abilities[1] = new Ability(90, 100, 2, 2, 30, 0, false, false, "Blade's Reach");
-        abilities[2] = new Ability(0, 0, 1, 3, 60, 0, false, false, "Shadow Infusion");
-    }
-
-    public void choose(Player target) {
-        int random;
-
-        if ((this.getHp()[0] * 100.0f) / this.getMaxHp() > 0.6) {
-            if (abilities[0].getCurrentCooldown() == 0 && this.mana >= abilities[0].getMana() || abilities[1].getCurrentCooldown() == 0 && this.mana >= abilities[1].getMana()) {
-                random = randomNumber(1, 3);
-            } else {
-                random = 1;
-            }
-        } else {
-            if (abilities[0].getCurrentCooldown() == 0 && this.mana >= abilities[0].getMana() || abilities[1].getCurrentCooldown() == 0 && this.mana >= abilities[1].getMana() || abilities[2].getCurrentCooldown() == 0 && this.mana >= abilities[2].getMana()) {
-                random = randomNumber(1, 4);
-            } else {
-                random = 1;
-            }
-        }
-
-        if (random == 1) {
-            this.attack(target);
-        } else {
-            this.cast(target);
-        }
-    }
-
-    public void cast(Player target) {
-        int random, damage, heal;
-
-        if ((float) (this.getHp()[0]) / (float) (this.maxHp) > 0.6) {
-            random = randomNumber(1, 2);
-        } else {
-            random = randomNumber(1, 6);
-        }
-
-        if (random == 1) {
-            random = 0;
-        } else if (random == 2) {
-            random = 1;
-        } else {
-            random = 2;
-        }
-
-        while (abilities[random].getCurrentCooldown() > 0 || this.mana < abilities[random].getMana()) {
-            if ((float) (this.getHp()[0]) / (float) (this.maxHp) > 0.6) {
-                random = randomNumber(1, 2);
-            } else {
-                random = randomNumber(1, 6);
-            }
-
-            if (random == 1) {
-                random = 0;
-            } else if (random == 2) {
-                random = 1;
-            } else {
-                random = 2;
-            }
-        }
-
-        this.mana -= abilities[random].getMana();
-        abilities[random].setCurrentCooldown(abilities[random].getCooldown(), 0);
-
-        switch (random) {
-            case 0:
-                damage = abilities[0].getDamage(this.getAttackDamage()) - (int) (100 / (100 - (target.getArmor() * ((float) (100 - this.getPenetration()) / 100.0f))));
-                damage = randomNumber((int) (0.9 * damage), (int) (1.1 * damage));
-
-                target.setHp(damage, 1);
-
-                if (this.getHp()[0] < this.maxHp) {
-                    heal = (int) (damage * ((float) (abilities[0].getVamp()) / 100.0f));
-                    if (heal > this.maxHp - this.getHp()[0]) heal = this.maxHp - this.getHp()[0];
-                    this.setHp(heal, 0, 0);
-
-                    System.out.println(new Text("<red>Kayn<white> cast their Q ability (" + abilities[0].getName() + "), dealing <red>" + damage + " physical damage<white> to you and consuming <blue>" + abilities[0].getMana() + " Mana<white>. They also healed themselves for <green>" + abilities[0].getVamp() + "% of the damage dealt (" + heal + " HP)<white>."));
-                } else {
-                    System.out.println(new Text("<red>Kayn<white> cast their Q ability (" + abilities[0].getName() + "), dealing <red>" + damage + " physical damage<white> to you and consuming <blue>" + abilities[0].getMana() + " Mana<white>."));
-                }
-
-                break;
-            case 1:
-                damage = abilities[1].getDamage(this.getAbilityPower()) - (int) (100 / (100 - (target.getMagicResist() * ((float) (100 - this.getPenetration()) / 100.0f))));
-                target.setHp(damage, 1);
-
-                System.out.println(new Text("<red>Kayn<white> cast their W ability (" + abilities[1].getName() + "), dealing <blue>" + damage + " magical damage<white> to you and consuming <blue>" + abilities[0].getMana() + " Mana<white>."));
-
-                break;
-            case 2:
-                heal = (int) (0.3 * (this.maxHp - this.getHp()[0]));
-                this.setHp(heal, 0, 0);
-
-                System.out.println(new Text("<red>Kayn<white> cast their E ability (" + abilities[2].getName() + "), healing themselves for <green>30% of their current missing HP (" + heal + " HP)<white> and consuming <blue>" + abilities[2].getMana() + " Mana<white>."));
-
-                break;
-        }
-    }
-
-    private static int randomNumber(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    public int getMaxHp() { return this.maxHp; }
-    public int getMana() { return this.mana; }
-    public int getCriticalChance() { return this.criticalChance; }
-    public Ability[] getAbilities() { return this.abilities; }
-}
-
-class Ability {
-    private int baseDamage, scaling, type, cooldown, mana, vamp, currentCooldown = 0;
-    private boolean aoe, immobilizing;
-    private String name;
-
-    public Ability(int baseDamage, int scaling, int type, int cooldown, int mana, int vamp, boolean aoe, boolean immobilizing, String name) {
-        this.baseDamage = baseDamage;
-        this.scaling = scaling;
-        this.type = type; // AD: 1, AP: 2
-        this.cooldown = cooldown + 1;
-        this.mana = mana;
-        this.vamp = vamp;
-        this.aoe = aoe;
-        this.immobilizing = immobilizing;
-        this.name = name;
-    }
-
-    public int getDamage(int adOrAp) {
-        return (int) (this.baseDamage + (adOrAp * ((float) (this.scaling) / 100.0f)));
-    }
-    public int getBaseDamage() {
-        return this.baseDamage;
-    }
-    public int getScaling() {
-        return this.scaling;
-    }
-    public int getType() {
-        return this.type;
-    }
-    public int getCooldown() {
-        return this.cooldown;
-    }
-    public int getMana() {
-        return this.mana;
-    }
-    public int getVamp() { return this.vamp; }
-    public int getCurrentCooldown() {
-        return this.currentCooldown;
-    }
-    public boolean isAoe() {
-        return this.aoe;
-    }
-    public boolean isImmobilizing() { return this.immobilizing; }
-    public String getName() { return this.name; }
-
-    public void setCurrentCooldown(int cooldown, int type) { // 0: =, 1: -=
-        if (type == 0) {
-            this.currentCooldown = cooldown;
-        } else if (type == 1) {
-            this.currentCooldown -= cooldown;
-        }
-    }
-}
-
-class Buff {
-    private int type, wavesLeft;
-
-    public Buff(int type) { // Red: 1, Blue: 2
-        this.type = type;
-        this.wavesLeft = 3;
-    }
-
-    public int getType() {
-        return this.type;
-    }
-    public int getWavesLeft() {
-        return this.wavesLeft;
-    }
-    public void decrementWaves() { this.wavesLeft--; }
-    public void setWavesLeft(int wavesLeft) { this.wavesLeft = wavesLeft; }
-}
-
-class Item {
-    private int cost;
-
-    /*
-    STARTER
-    * Doran's Blade: 1
-    * Doran's Ring: 2
-    * Doran's Shield: 3
-
-    FIGHTER
-    * Divine Sunderer: 4
-
-    ASSASSIN
-    * Duskblade: 5
-
-    MAGE:
-    * Everfrost: 6
-
-    BOOTS
-    * Berserker's Greaves: 7
-    * Sorcerer's Shoes: 8
-     */
-    private int id;
-    private String name, recommended, stats;
-    private boolean purchased, purchasable;
-
-    public Item(int id, int cost, String name, String recommended, String stats, boolean purchasable) {
-        this.id = id;
-        this.cost = cost;
-        this.name = name;
-        this.recommended = recommended;
-        this.stats = stats;
-        this.purchased = false;
-        this.purchasable = purchasable;
-    }
-
-    public int getId() { return this.id; }
-    public String getName() { return this.name; }
-    public int getCost() {
-        return this.cost;
-    }
-    public String getRecommended() { return this.recommended; }
-    public String getStats() { return this.stats; }
-    public boolean isPurchased() { return this.purchased; }
-    public boolean isPurchasable() { return this.purchasable; }
-
-    public void setPurchased(boolean purchased) { this.purchased = purchased; }
-}
-
-class Shop {
-    private Item[] shop = new Item[11];
-
-    public Shop() {
-        shop[0] = new Item(1, 400, "Doran's Blade", "<yellow>Yasuo<white>, <green>Jinx", "<red>25 AD<white>, <green>80 Max HP<white>", true);
-        shop[1] = new Item(2, 400, "Doran's Ring", "<red>Malphite", "<blue>35 AP<white>, <green>75 Max HP<white>", true);
-        shop[2] = new Item(3, 400, "Doran's Shield", "All", "<yellow>15 Armor<white>, <cyan>15 MR<white>, <green>100 Max HP<white>", true);
-        shop[3] = new Item(4, 1000, "Divine Sunderer", "<yellow>Yasuo", "<red>55 AD<white>, <red>60% Crit<white>, <green>200 Max HP<white>", true);
-        shop[4] = new Item(5, 1000, "Duskblade", "<green>Jinx", "<red>90 AD<white>, <purple>40% Penetration<white>, <green>110 Max HP<white>", true);
-        shop[5] = new Item(6, 1000, "Everfrost", "<red>Malphite", "<blue>100 AP<white>, <purple>25% Penetration<white>, <green>150 Max HP<white>", true);
-        shop[6] = new Item(7, 650, "Berserker's Greaves", "<yellow>Yasuo<white>, <green>Jinx", "45 Speed, <red>35 AD<white>, <purple>5% Penetration<white>", true);
-        shop[7] = new Item(8, 650, "Sorcerer's Shoes", "<red>Malphite", "50 Speed, <blue>45 AP<white>, <purple>8% Penetration<white>", true);
-        shop[8] = new Item(9, 0, "Eye of the Herald", "All", "15% Speed, <green>30% Max HP<white>", false);
-        shop[9] = new Item(10, 0, "Aspect of the Dragon", "All", "20% Speed, <red>20% Crit<white>", false);
-        shop[10] = new Item(11, 0, "Hand of Baron", "All", "<red>15% AD<white>, <blue>15% AP<white>, <yellow>20% Armor<white>, <cyan>20% MR<white>", false);
-    }
-
-    public int getLength() {
-        return shop.length;
-    }
-    public Item[] getItems() { return shop; }
-    
-    public void buy(Player target, int id) {
-        target.setGold(this.shop[id - 1].getCost(), 1);
-        shop[id - 1].setPurchased(true);
-
-        int i;
-        for (i = 0; i < target.getInventory().length; i++) {
-            if (target.getInventory()[i] == null) {
-                target.setInventory(i, shop[id - 1]);
-                break;
-            }
-        }
-
-        switch (id) {
-            case 1:
-                target.setAttackDamage(25, 0);
-                target.setMaxHp(80, 0);
-                break;
-            case 2:
-                target.setAbilityPower(35, 0);
-                target.setMaxHp(75, 0);
-                break;
-            case 3:
-                target.setArmor(15, 0);
-                target.setMagicResist(15, 0);
-                target.setMaxHp(100, 0);
-                break;
-            case 4:
-                target.setAttackDamage(55, 0);
-                target.setCriticalChance(60, 0);
-                target.setMaxHp(200, 0);
-                break;
-            case 5:
-                target.setAttackDamage(90, 0);
-                target.setPenetration(40, 0);
-                target.setMaxHp(110, 0);
-                break;
-            case 6:
-                target.setAbilityPower(100, 0);
-                target.setPenetration(25, 0);
-                target.setMaxHp(150, 0);
-                break;
-            case 7:
-                target.setSpeed(45, 0);
-                target.setAttackDamage(35, 0);
-                target.setPenetration(5, 0);
-                break;
-            case 8:
-                target.setSpeed(50, 0);
-                target.setAbilityPower(45, 0);
-                target.setPenetration(8, 0);
-                break;
-        }
-
-        System.out.println(new Text("You have successfully purchased a <cyan>" + this.shop[id - 1].getName() + " <white>for <yellow>" + this.shop[id - 1].getCost() + " Gold<white>. You now have <yellow>" + target.getGold() + " Gold<white>."));
-    }
-
-    public void sell(Player target, int id) {
-        target.setGold((int) (this.shop[id - 1].getCost() * 0.7), 0);
-        shop[id - 1].setPurchased(false);
-
-        int i;
-        for (i = 0; i < target.getInventory().length; i++) {
-            if (target.getInventory()[i] != null && target.getInventory()[i].getId() == id) {
-                target.setInventory(i, null);
-            }
-        }
-
-        switch (id) {
-            case 1:
-                target.setAttackDamage(25, 1);
-                target.setMaxHp(80, 1);
-                break;
-            case 2:
-                target.setAbilityPower(35, 1);
-                target.setMaxHp(75, 1);
-                break;
-            case 3:
-                target.setArmor(15, 1);
-                target.setMagicResist(15, 1);
-                target.setMaxHp(100, 1);
-                break;
-            case 4:
-                target.setAttackDamage(55, 1);
-                target.setCriticalChance(60, 1);
-                target.setMaxHp(200, 1);
-                break;
-            case 5:
-                target.setAttackDamage(90, 1);
-                target.setPenetration(40, 1);
-                target.setMaxHp(110, 0);
-                break;
-            case 6:
-                target.setAbilityPower(100, 1);
-                target.setPenetration(25, 1);
-                target.setMaxHp(150, 1);
-                break;
-            case 7:
-                target.setSpeed(45, 1);
-                target.setAttackDamage(35, 1);
-                target.setPenetration(5, 1);
-                break;
-            case 8:
-                target.setSpeed(50, 1);
-                target.setAbilityPower(45, 1);
-                target.setPenetration(8, 1);
-                break;
-        }
-
-        System.out.println(new Text("You have successfully sold your <cyan>" + this.shop[id - 1].getName() + " <white>for <yellow>" + (int) (this.shop[id - 1].getCost() * 0.7) + " Gold<white>. You now have <yellow>" + target.getGold() + " Gold<white>."));
-    }
-}
-
-class Text {
-    private String text;
-
-    public Text(String text) {
-        this.text = "\u001B[0m" + text;
-    }
-
-    public String toString() {
-        return text.replaceAll("<white>", "\u001B[0m").replaceAll("<red>", "\u001B[31m").replaceAll("<green>", "\u001B[32m").replaceAll("<blue>", "\u001B[34m").replaceAll("<cyan>", "\u001B[36m").replaceAll("<yellow>", "\u001B[33m").replaceAll("<purple>", "\u001B[35m");
     }
 }
